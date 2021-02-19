@@ -2,51 +2,81 @@ package model;
 
 import java.util.ArrayList;
 
-import of6.lf.Tile;
 
 public class BoardModel {
 	private int[][] board = new int[20][20];
-	private int type = 0;
-	private ArrayList<Integer> snake;
+	private ArrayList<Coordinate> snake;
 	
-	public void setAir() {
-		type = 0;
-	}
-	
-	public void setFruit() {
-		type = 1;
-	}
-	
-	public void setSnake() {
-		type = 2;
-	}
-	
-	public int getType() {
-		return type;
-	}
+
 	
 	public boolean outOfBounds(int x, int y) {
 		return x >= 0 && x < 21 && y >= 0 && y < 21;
 	}
 	
-	public void getTile(int x, int y) {
+	public Coordinate getCoordinate(int x, int y) {
 		if (!outOfBounds(x, y)) {
 			throw new IllegalArgumentException("Coordinates out of bounds");
 		}
 	}
 	
-	public void addSnakeToTiles(int snakeHead, int snakeBody) {
+	public void addSnakeToTiles(Coordinate snakeHead, Coordinate snakeBody) {
 		if (snake != null) {
             throw new IllegalStateException("Snake already created");
         }
-		
-		snake = new ArrayList<Integer>();
+		snake = new ArrayList<Coordinate>();
 		
 		snakeHead.setSnake();
 		snakeBody.setSnake();
 		snake.add(snakeHead);
 		snake.add(snakeBody);
 	}
+	
+	public void moveUp() {
+        move(0, -1);
+    }
+
+    public void moveDown() {
+        move(0, 1);
+    }
+
+    public void moveLeft() {
+        move(-1, 0);
+    }
+
+    public void moveRight() {
+        move(1, 0);
+    }
+    
+    private boolean canMoveTo(int dx, int dy) {
+		
+		int targetX = snake.get(0).getX() + dx;
+		int targetY = snake.get(0).getY() + dy;
+		
+		if(!outOfBounds(targetX, targetY)) {
+			return false;
+		}
+		
+		Coordinate targetTile = getCoordinate(targetX, targetY);
+		boolean tileIsSnakeTail = (targetTile == snake.get(snake.size()-1));
+		
+		return !targetTile.hasCollision() || tileIsSnakeTail;
+	}
+
+
+	private void move(int dx, int dy) {
+		if(snake == null) {
+    		throw new IllegalStateException("Not a valid game state for move");
+		}
+		if(!canMoveTo(dx, dy)) {
+			throw new IllegalArgumentException("Not a valid move");
+		}
+
+		int targetX = snake.get(0).getX() + dx;
+		int targetY = snake.get(0).getY() + dy;
+		Coordinate targetTile = getCoordinate(targetX, targetY);
+	}
+	
+	
 	
 	public String setColor() {
 			
