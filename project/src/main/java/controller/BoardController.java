@@ -6,10 +6,6 @@ import model.BoardModel;
 import model.Coordinate;
 import java.util.Random;
 
-
-
-
-
 public class BoardController {
 	
 	private BoardModel game;
@@ -22,8 +18,6 @@ public class BoardController {
 		createBoard();
 		drawBoard();		
 	}
-	
-	
 	
 	private void createBoard() {
 	 for (int y = 0; y < game.getHeight(); y++) {
@@ -71,8 +65,7 @@ public class BoardController {
 			return "#e6fcff";
 		}
 	}
-	
-	
+			
 	private void drawBoard() {
 		for (int y = 0; y < game.getHeight(); y++) {
 			for (int x = 0; x < game.getWidth(); x++) {

@@ -2,8 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-
-
 public class BoardModel {
 	
 	private int height;
@@ -103,13 +101,6 @@ public class BoardModel {
 		Coordinate targetTile = getCoordinate(targetX, targetY);
 	}
 	
-	
-	/*
-	public String setColor() {		
-		if (getType() == 1) {
-			return "#e5303a";
-		}
-	}	*/
 	/*
 	public static void main(String[] args) {
 	    BoardModel game = new BoardModel(16, 12);
