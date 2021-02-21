@@ -3,20 +3,47 @@ package model;
 import java.util.ArrayList;
 
 
+
 public class BoardModel {
-	private int[][] board = new int[20][20];
+	
+	private int height;
+	private int width;
+	private Coordinate[][] board;
 	private ArrayList<Coordinate> snake;
 	
+	
+	public BoardModel(int width, int height){
+		this.height = height;
+		this.width = width;
 
+		this.board = new Coordinate[height][width];
+		
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				board[y][x] = new Coordinate(x, y);
+			}
+		
+		}
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+
+
+	public int getWidth() {
+		return width;
+	}
 	
 	public boolean outOfBounds(int x, int y) {
-		return x >= 0 && x < 21 && y >= 0 && y < 21;
+		return x >= 0 && x < getWidth() && y >= 0 && y < getHeight();
 	}
 	
 	public Coordinate getCoordinate(int x, int y) {
 		if (!outOfBounds(x, y)) {
 			throw new IllegalArgumentException("Coordinates out of bounds");
 		}
+		return this.board[y][x];
 	}
 	
 	public void addSnakeToTiles(Coordinate snakeHead, Coordinate snakeBody) {
@@ -77,11 +104,14 @@ public class BoardModel {
 	}
 	
 	
-	
-	public String setColor() {
-			
+	/*
+	public String setColor() {		
 		if (getType() == 1) {
 			return "#e5303a";
 		}
-	}	
+	}	*/
+	/*
+	public static void main(String[] args) {
+	    BoardModel game = new BoardModel(16, 12);
+	}*/
 }
