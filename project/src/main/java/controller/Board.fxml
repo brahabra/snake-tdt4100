@@ -17,8 +17,8 @@
           <RowConstraints maxHeight="396.81190490722656" minHeight="10.0" prefHeight="396.81190490722656" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Pane fx:id="board"/>
-            <Pane GridPane.rowIndex="1" />
+            <Pane fx:id="board" onKeyPressed="#movePosition" />
+            <Pane onKeyPressed="#movePosition" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

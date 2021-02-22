@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -7,17 +8,21 @@ import model.BoardModel;
 import model.Coordinate;
 import java.util.Random;
 
+
 public class BoardController  {
 	
 	private BoardModel game;
 	
 	@FXML
 	private Pane board;
+	
+	
 		
 	public void initialize() {
 		setInitialGameState();
 		createBoard();
 		drawBoard();
+		
 	}
 	
 	private void createBoard() {
@@ -70,22 +75,11 @@ public class BoardController  {
 	@FXML
 	private void movePosition() {
 		
-		KeyboardListener test = new KeyboardListener();
-		
-		test.update();
-		
-		if(test.down) {
-			//game.moveLeft();
-			//drawBoard();
-			System.out.println("OPP");
-		}
-		/*else if(test.left) {
-			//game.moveLeft();
-			//drawBoard();
-			System.out.println("VENSTRE");
-		}*/
+		System.out.println("TEST");
 		
 	}
+	
+	
 	
 			
 	private void drawBoard() {
