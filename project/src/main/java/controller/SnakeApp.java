@@ -13,6 +13,8 @@ public class SnakeApp extends Application {
 		primaryStage.setTitle("Snake");
 		primaryStage.setScene(new Scene(parent));
 		primaryStage.show();
+		//parent.setOnKeyPressed(event -> { if (parent.getOnKeyPressed() != null) parent.getOnKeyPressed().keyPressed(event); });
+
 	}
 
 	public static void main(String[] args) {

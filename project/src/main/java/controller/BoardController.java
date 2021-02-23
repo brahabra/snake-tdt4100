@@ -1,22 +1,28 @@
 package controller;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import model.BoardModel;
 import model.Coordinate;
 import java.util.Random;
 
-public class BoardController {
+
+public class BoardController  {
 	
 	private BoardModel game;
 	
 	@FXML
 	private Pane board;
 	
+	
+		
 	public void initialize() {
 		setInitialGameState();
 		createBoard();
-		drawBoard();		
+		drawBoard();
+		
 	}
 	
 	private void createBoard() {
@@ -48,7 +54,7 @@ public class BoardController {
 	
 	private void setInitialGameState() {
 		game = new BoardModel(20, 20);
-		game.getCoordinate(createRandomPositionX(), createRandomPositionY()).setFruit();	
+		game.getCoordinate(createRandomPositionX() - 1, createRandomPositionY() - 1).setFruit();	
 		game.getCoordinate(9, 9).setSnake();
 		game.addSnakeToTiles(game.getCoordinate(7, 7), game.getCoordinate(8, 8));
 		
@@ -65,6 +71,16 @@ public class BoardController {
 			return "#e6fcff";
 		}
 	}
+	
+	@FXML
+	private void movePosition() {
+		
+		System.out.println("TEST");
+		
+	}
+	
+	
+	
 			
 	private void drawBoard() {
 		for (int y = 0; y < game.getHeight(); y++) {
@@ -74,5 +90,3 @@ public class BoardController {
 		}
 	}
 }
-
-
