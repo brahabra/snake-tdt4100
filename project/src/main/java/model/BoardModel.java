@@ -6,13 +6,17 @@ public class BoardModel {
 	
 	private int height;
 	private int width;
+	private int pixelSize;
 	private Coordinate[][] board;
 	private ArrayList<Coordinate> snake;
+	private boolean isGameOver = false;
 	
 	
-	public BoardModel(int width, int height){
+	public BoardModel(int width, int height, int pixelSize){
+		
 		this.height = height;
 		this.width = width;
+		this.pixelSize = pixelSize;
 
 		this.board = new Coordinate[height][width];
 		
@@ -22,6 +26,9 @@ public class BoardModel {
 			}
 		
 		}
+	}
+	public int getPixelSize() {
+		return this.pixelSize;
 	}
 	
 	public int getHeight() {
@@ -33,12 +40,12 @@ public class BoardModel {
 		return width;
 	}
 	
-	public boolean outOfBounds(int x, int y) {
+	public boolean inBounds(int x, int y) {
 		return x >= 0 && x < getWidth() && y >= 0 && y < getHeight();
 	}
 	
 	public Coordinate getCoordinate(int x, int y) {
-		if (!outOfBounds(x, y)) {
+		if (!inBounds(x, y)) {
 			throw new IllegalArgumentException("Coordinates out of bounds");
 		}
 		return this.board[y][x];
@@ -50,8 +57,8 @@ public class BoardModel {
         }
 		snake = new ArrayList<Coordinate>();
 		
-		snakeHead.setSnake();
-		snakeBody.setSnake();
+		snakeHead.setSnakeHead();
+		snakeBody.setSnakeBody();
 		snake.add(snakeHead);
 		snake.add(snakeBody);
 	}
@@ -77,7 +84,7 @@ public class BoardModel {
 		int targetX = snake.get(0).getX() + dx;
 		int targetY = snake.get(0).getY() + dy;
 		
-		if(!outOfBounds(targetX, targetY)) {
+		if(!inBounds(targetX, targetY)) {
 			return false;
 		}
 		
@@ -101,8 +108,17 @@ public class BoardModel {
 		Coordinate targetTile = getCoordinate(targetX, targetY);
 	}
 	
-	/*
-	public static void main(String[] args) {
-	    BoardModel game = new BoardModel(16, 12);
-	}*/
+	public boolean getIsGameOver() {
+		return this.isGameOver;
+    }
+	
+	public void setGameOver() {
+		this.isGameOver = true; 
+	}
+	
+	
+	public boolean isGameOver(int dx, int dy, int x, int y) {
+		return !canMoveTo(dx, dy) && !inBounds(x, y);
+	}
+	
 }
