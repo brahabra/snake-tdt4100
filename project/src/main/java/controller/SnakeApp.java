@@ -37,13 +37,13 @@ public class SnakeApp extends Application {
 		Scene scene = new Scene(root, BOARD_WIDTH*PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE);
 		BoardModel board = new BoardModel(BOARD_WIDTH, BOARD_HEIGHT,PIXEL_SIZE);
 		BoardController boardController = new BoardController(board);
-		SnakeModel snake = new SnakeModel(4,10); 
+		SnakeModel snake = new SnakeModel(4,5); 
 		boardController.start(scene, graphicsContext, snake);
 		
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
 			
 			switch (key.getCode()) {
-				case W:
+				case W: 
 				case UP:
 					snake.setDirection(Dir.up);
 					System.out.println("OPP");

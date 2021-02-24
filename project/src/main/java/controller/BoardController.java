@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import model.BoardModel;
 import model.Coordinate;
+import model.FruitModel;
 import model.SnakeModel;
 import controller.SnakeApp;
 
@@ -57,6 +58,8 @@ public class BoardController  {
 			//BoardModel board = new BoardModel(SnakeApp.BOARD_WIDTH,SnakeApp.BOARD_HEIGHT,SnakeApp.PIXEL_SIZE);
 		
 			SnakeController snakeController = new SnakeController(snake);
+			//FruitModel newFruit = new FruitModel();
+			
 			//snakeController.move();
 			//snakeController.fillSnake(graphicsContext, this.game);
 	        
