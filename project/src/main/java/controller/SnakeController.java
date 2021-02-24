@@ -49,9 +49,10 @@ public class SnakeController {
         ArrayList<Coordinate> snake = this.snakeModel.getSnake();
         int pxSize = board.getPixelSize();
         
-        graphicsContext.setFill(Color.GREY); // fill the background white each time
+        graphicsContext.setFill(Color.BLACK); // fill the background white each time
         graphicsContext.fillRect(0, 0, board.getWidth()*pxSize, board.getHeight()*pxSize);
- 
+       
+        
         for (Coordinate s : snake) { // draw snake
             graphicsContext.setFill(this.snakeModel.getSnakeColor());
             graphicsContext.fillRect(s.getX()*pxSize, s.getY()*pxSize, pxSize - 1, pxSize - 1);
