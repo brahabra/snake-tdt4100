@@ -7,9 +7,11 @@ public class BoardModel {
 	private int height;
 	private int width;
 	private int pixelSize;
+	private FruitModel food;
 	private Coordinate[][] board;
 	private ArrayList<Coordinate> snake;
 	private boolean isGameOver = false;
+	private FruitModel fruit; 
 	
 	
 	public BoardModel(int width, int height, int pixelSize){
@@ -17,16 +19,20 @@ public class BoardModel {
 		this.height = height;
 		this.width = width;
 		this.pixelSize = pixelSize;
+	
+	
 
-		this.board = new Coordinate[height][width];
+		/*this.board = new Coordinate[height][width];
 		
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				board[y][x] = new Coordinate(x, y);
 			}
 		
-		}
+		}*/
 	}
+	
+	
 	public int getPixelSize() {
 		return this.pixelSize;
 	}
@@ -40,6 +46,10 @@ public class BoardModel {
 		return width;
 	}
 	
+	public FruitModel getFruit() {
+		return fruit;
+	}
+	/*
 	public boolean inBounds(int x, int y) {
 		return x >= 0 && x < getWidth() && y >= 0 && y < getHeight();
 	}
@@ -106,7 +116,7 @@ public class BoardModel {
 		int targetX = snake.get(0).getX() + dx;
 		int targetY = snake.get(0).getY() + dy;
 		Coordinate targetTile = getCoordinate(targetX, targetY);
-	}
+	}*/
 	
 	public boolean getIsGameOver() {
 		return this.isGameOver;
