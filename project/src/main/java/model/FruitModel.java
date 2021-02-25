@@ -10,13 +10,14 @@ import model.Coordinate;
 public class FruitModel {
 	
 	private Color fruitColor = Color.RED;
-	private int randomNumberX;
-	private int randomNumberY;
+	private int x;
+	private int y;
 	
-	/*
-	public FruitModel(Color fruitColor) {
-		this.fruitColor = fruitColor;
-	}*/
+	
+	public FruitModel(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
 	/*
 	public void fillFruit(GraphicsContext graphicsContext, BoardModel board) {
 		int pxSize = board.getPixelSize();
@@ -42,19 +43,38 @@ public class FruitModel {
 		int randomNumberY = randomFruit.nextInt(SnakeApp.BOARD_WIDTH * SnakeApp.PIXEL_SIZE); 
 		return randomNumberY;
 	}
+	
+	public void setPositionX() {
+		Random randomFruit = new Random();
+		x = randomFruit.nextInt(SnakeApp.BOARD_WIDTH * SnakeApp.PIXEL_SIZE); 
+	}
+	
+	public void setPositionY() {
+		Random randomFruit = new Random();
+		y = randomFruit.nextInt(SnakeApp.BOARD_WIDTH * SnakeApp.PIXEL_SIZE); 
+		
+	}
+	
+	public int getPositionX() {
+		return x;
+	}
+	
+	public int getPositionY() {
+		return x;
+	}
+
+	@Override
+	public String toString() {
+		return Integer.toString(x) + " " +  Integer.toString(y); 
+	}
 	/*
-	private void setFruitPosition() {
-		createRandomPositionX();
-		createRandomPositionY();
-		Coordinate fruit = new Coordinate(createRandomPositionX(), createRandomPositionY());
+	public static void main(String[] args) {
+		FruitModel fruit = new FruitModel(3, 5);
+		fruit.setPositionX();
+		fruit.setPositionY();
+		System.out.println(fruit);
 	}*/
 	/*
-	private Coordinate getFruitPosition() {
-		Coordinate fruit = new Coordinate(createRandomPositionX(), createRandomPositionY());
-		return fruit;
-	}*/
-	
-	
 	public static void main(String[] args) {
 		Coordinate fruit = new Coordinate(createRandomPositionX(), createRandomPositionY());
 	
@@ -63,7 +83,7 @@ public class FruitModel {
 		
 		//System.out.println(createRandomPositionX());
 		//System.out.println(createRandomPositionY());
-	}
+	}*/
 	/*
 	private int createRandomPositionY() {
 		Random randomFruit = new Random();
@@ -72,10 +92,4 @@ public class FruitModel {
 	}*/
 	
 	
-	/*
-	private void setFruitPosition() {
-		// TODO: Check that body is not longer than board width;
-		this.snakeBody.add(new Coordinate(5,0));
-		}
-	*/
 }

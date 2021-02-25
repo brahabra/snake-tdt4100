@@ -53,19 +53,30 @@ public class BoardController  {
 		}
 	}
 	*/
-	public void start(Scene scene, GraphicsContext graphicsContext, SnakeModel snake) {
-			//SnakeModel snake = new SnakeModel(3,1); 
-			//BoardModel board = new BoardModel(SnakeApp.BOARD_WIDTH,SnakeApp.BOARD_HEIGHT,SnakeApp.PIXEL_SIZE);
+	public void fillFood(GraphicsContext graphicsContext) {
+		int pxSize = this.game.getPixelSize();
+		//FruitModel fruit = this.game.getFruit();
+		graphicsContext.setFill(Color.BLUE);
+	//	graphicsContext.fillRect(fruit.getPositionX() * pxSize,fruit.getPositionY() * pxSize, pxSize - 1, pxSize - 1);
+		graphicsContext.fillRect(5 * pxSize,5 * pxSize, pxSize - 1, pxSize - 1);
 		
-			SnakeController snakeController = new SnakeController(snake);
-			//FruitModel newFruit = new FruitModel();
+		
+	}
+	
+	
+	public void start(Scene scene, GraphicsContext graphicsContext, SnakeModel snake ) {
 			
+			fillFood(graphicsContext);
+			SnakeController snakeController = new SnakeController(snake);
+			
+			//FruitModel newFruit = new FruitModel();
 			//snakeController.move();
 			//snakeController.fillSnake(graphicsContext, this.game);
-	        
+			
+			
 	        new AnimationTimer() {
 	            long tick = 0;
-	 
+	            
 	            @Override
 	            public void handle(long now) {
 	                
@@ -77,8 +88,10 @@ public class BoardController  {
 	                
 	                if (tick == 0 || now - tick > 1000000000 / snake.getSpeed()) { // to handle the speed of the game
 	                    tick = now;
+	                  
 	                    snakeController.move();
 	                    snakeController.fillSnake(graphicsContext, game);
+	                    fillFood(graphicsContext);
 	                   // boardController.fillFood(graphicsContext);
 	                    
 	                    if (snakeController.snakeCrashed(game)) {
@@ -89,9 +102,10 @@ public class BoardController  {
 	            }
 	            
 	        }.start();
+	  
 	        
 	       // setBoardKeyEventListeners(scene, snake);
-	        
+	       
 	    }
 	    
 	 private void drawGameOver(GraphicsContext graphicsContext) {
