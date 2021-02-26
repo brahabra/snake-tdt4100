@@ -13,6 +13,7 @@ public class BoardModel {
 	private ArrayList<Coordinate> snake;
 	private boolean isGameOver = false;
 	private FruitModel fruit; 
+	private int fruitScore = 0;
 	
 	
 	public BoardModel(int width, int height, int pixelSize){
@@ -20,7 +21,7 @@ public class BoardModel {
 		this.height = height;
 		this.width = width;
 		this.pixelSize = pixelSize;
-	
+		this.fruit = new FruitModel();
 	
 
 		/*this.board = new Coordinate[height][width];
@@ -32,7 +33,13 @@ public class BoardModel {
 		
 		}*/
 	}
+	public void increaseFruitScore() {
+		this.fruitScore += 1;
+	}
 	
+	public int getFruitScore() {
+		return fruitScore;
+	}
 	
 	public int getPixelSize() {
 		return this.pixelSize;
@@ -51,8 +58,8 @@ public class BoardModel {
 		return fruit;
 	}
 	
-	public void setFruit(FruitModel fruit) {
-		this.fruit = fruit;
+	public void setFruit() {
+		this.fruit = new FruitModel();
 	}
 	/*
 	public boolean inBounds(int x, int y) {
@@ -132,8 +139,5 @@ public class BoardModel {
 	}
 	
 	
-	public boolean isGameOver(int dx, int dy, int x, int y) {
-		return !canMoveTo(dx, dy) && !inBounds(x, y);
-	}
 	
 }
