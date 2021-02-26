@@ -65,10 +65,12 @@ public class BoardController  {
 	*/
 	public void fillFood(GraphicsContext graphicsContext) {
 		int pxSize = this.game.getPixelSize();
-		//FruitModel fruit = this.game.getFruit();
-		graphicsContext.setFill(Color.BLUE);
-	//	graphicsContext.fillRect(fruit.getPositionX() * pxSize,fruit.getPositionY() * pxSize, pxSize - 1, pxSize - 1);
-		graphicsContext.fillRect(5 * pxSize,5 * pxSize, pxSize - 1, pxSize - 1);
+		FruitModel fruit = this.game.getFruit();
+		//System.out.println(fruit.getPositionX());
+		//System.out.println(fruit.getPositionY());
+		graphicsContext.setFill(Color.RED);
+		graphicsContext.fillRect(fruit.getPositionX() * pxSize,fruit.getPositionY() * pxSize, pxSize - 1, pxSize - 1);
+	//	graphicsContext.fillRect(5 * pxSize,250 * pxSize, pxSize - 1, pxSize - 1);
 		
 		
 	}
@@ -82,7 +84,7 @@ public class BoardController  {
 			//FruitModel newFruit = new FruitModel();
 			//snakeController.move();
 			//snakeController.fillSnake(graphicsContext, this.game);
-			
+			BoardController boardController = this;
 			
 	        new AnimationTimer() {
 	            long tick = 0;
@@ -98,19 +100,20 @@ public class BoardController  {
 	                
 	                if (tick == 0 || now - tick > 1000000000 / snake.getSpeed()) { // to handle the speed of the game
 	                    tick = now;
-	                  
+	                    
 	                    snakeController.move();
+	                    snakeController.eatFruit(boardController);
 	                    snakeController.fillSnake(graphicsContext, game);
+	                    viewScore(graphicsContext);
 	                    fillFood(graphicsContext);
-	                   // boardController.fillFood(graphicsContext);
+	                   
+	                    //boardController.fillFood(graphicsContext);
 	                    
 	                    if (snakeController.snakeCrashed(game)) {
 	                        setGameOver();
 	                    }
-	                    /*
-	                    if (eatFruit()) {
-	                    }
-	                   */
+	                   
+	                   
 	                }
 	                
 	            }
@@ -123,9 +126,18 @@ public class BoardController  {
 	    }
 	    
 	 private void drawGameOver(GraphicsContext graphicsContext) {
-	        graphicsContext.setFont(new Font("", 50));
+	        graphicsContext.setFont(new Font(50));
 	        graphicsContext.setFill(Color.RED);
 	        graphicsContext.fillText("Game over", 125, 250);
+	 }
+	 
+	 private void viewScore(GraphicsContext graphicsContext) {
+		 	String scoreText = String.format("Score: %s", game.getFruitScore());
+		 	graphicsContext.setFont(new Font(15));
+		 	graphicsContext.setFill(Color.BLACK);
+		 	graphicsContext.fillText(scoreText, 20, 490);
+		 	
+		 	
 	 }
 	 
 	   
