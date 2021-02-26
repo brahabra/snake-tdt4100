@@ -6,7 +6,7 @@ import controller.SnakeApp;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import model.Coordinate;
-import of6.lf.Tile;
+
 
 public class FruitModel {
 	
@@ -16,9 +16,9 @@ public class FruitModel {
 	
 	
 	
-	public FruitModel(int x, int y) {
-		this.x = x;
-		this.y = y;
+	public FruitModel() {
+		this.x = setPositionX();
+		this.y = setPositionY();
 	}
 	
 	
@@ -36,7 +36,7 @@ public class FruitModel {
 	public Color getFruitColor() {
 		return fruitColor;
 	}
-	
+	/*
 	public static int createRandomPositionX() {
 		Random randomFruit = new Random();
 		int randomNumberX = randomFruit.nextInt(SnakeApp.BOARD_WIDTH * SnakeApp.PIXEL_SIZE); 
@@ -47,17 +47,20 @@ public class FruitModel {
 		Random randomFruit = new Random();
 		int randomNumberY = randomFruit.nextInt(SnakeApp.BOARD_WIDTH * SnakeApp.PIXEL_SIZE); 
 		return randomNumberY;
+	}*/
+	
+	private int setPositionX() {
+		Random randomFruit = new Random();
+		int x = randomFruit.nextInt(SnakeApp.BOARD_WIDTH); 
+		//TODO Fikse at man ikke får kjipe frukter langs ramma, typ. 0 og 50
+		return x;
 	}
 	
-	public void setPositionX() {
+	private int setPositionY() {
 		Random randomFruit = new Random();
-		x = randomFruit.nextInt(SnakeApp.BOARD_WIDTH * SnakeApp.PIXEL_SIZE); 
-	}
-	
-	public void setPositionY() {
-		Random randomFruit = new Random();
-		y = randomFruit.nextInt(SnakeApp.BOARD_WIDTH * SnakeApp.PIXEL_SIZE); 
-		
+		int y = randomFruit.nextInt(SnakeApp.BOARD_HEIGHT - SnakeApp.SCOREBOARD_BANNER_HEIGHT / SnakeApp.PIXEL_SIZE); 
+		//TODO Fikse at man ikke får kjipe frukter langs ramma, typ. 0 og 50
+		return y;
 	}
 	
 	public int getPositionX() {

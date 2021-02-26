@@ -27,6 +27,10 @@ public class SnakeModel {
 		return this.speed;
 	}
 	
+	public void setIncreasedSpeed() {
+		this.speed += 3;
+	}
+	
 	public Dir getDirection() {
 		return this.direction;
 	}
@@ -46,7 +50,7 @@ public class SnakeModel {
 	private void setSnakeBody(int initSize) {
 		// TODO: Check that body is not longer than board width;
 		for (int i = 0; i < initSize; i++) {
-			this.snakeBody.add(new Coordinate(i,0));
+			this.snakeBody.add(new Coordinate(initSize - 1,0));
 			}
 		}
 	}
