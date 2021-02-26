@@ -10,6 +10,8 @@ public class Coordinate {
 	       this.x = x;
 	       this.y = y;
 	  }
+	
+
 	/*
 	public void setAir() {
 		type = 0;
