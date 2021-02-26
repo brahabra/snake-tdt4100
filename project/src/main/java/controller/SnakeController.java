@@ -39,7 +39,7 @@ public class SnakeController {
                 break;
         }
                  
-       // eatFood(boardController);
+      //  eatFruit();
         
         for (int i = snake.size() - 1; i > 0; i--) {
             snake.get(i).setX(snake.get(i-1).getX());
@@ -63,34 +63,63 @@ public class SnakeController {
             //graphicsContext.fillRect(s.getX()*pxSize, s.getY()*pxSize, pxSize - 2, pxSize - 2);
         }
     }
-    /*
-    private void eatFood(BoardController boardController) {
+    
+    private void eatFruit(BoardController boardController) {
     	Coordinate snakeHead = this.snakeModel.getSnake().get(0);
-        FoodModel food = boardController.getBoard().getFood();
-        if (snakeHead.getX() == food.getX() && snakeHead.getY() == food.getY()) {
+        FruitModel fruit = boardController.getBoard().getFruit();
+    	//FruitModel fruit = boardController.getFruit(1, 2);
+    	
+        if (snakeHead.getX() == fruit.getPositionX() && snakeHead.getY() == fruit.getPositionY()) {
             this.snakeModel.getSnake().add(new Coordinate(-1,-1));
-            boardController.setNewFood();
+            BoardModel.setFruit();
         }
     }
-    */
+    
     
     public boolean snakeCrashed(BoardModel board) {
         ArrayList<Coordinate> snake = this.snakeModel.getSnake();
         boolean crashed = false;
         Coordinate head = snake.get(0);
+        Coordinate head1 = snake.get(1);
+        Coordinate head2 = snake.get(2);
+        Coordinate head3 = snake.get(3);
         
+        //Coordinate head1 = snake.get(1);
+    /*
+        for (int j = 1; j < snake.size(); j++) {
+	   		 if (head.getX() == snake.get(j) && head.getY() == snake.get(j)){
+	   			 crashed = true;
+	   		 }
+        */
         switch (snakeModel.getDirection()) {
+        	
+        
             case up:
-                crashed = head.getY() < 0;  
-                break;
+            	crashed = head.getY() < 0 || (head.getX() == head1.getX() && head.getY() == head1.getY()) || (head.getX() == head2.getX() && head.getY() == head2.getY()) || (head.getX() == head3.getX() && head.getY() == head3.getY());
+            	//crashed = head.getY() < 0;///////// || head.getY() == head1.getY();
+            	/*
+            	for (int j = 1; j < snake.size(); j++ ){
+            		Coordinate head1 = snake.get(j);
+            		crashed = head.getY() < 0 || (head.getY() == head1.getY() && head.getX() == head1.getX());
+            	}
+            	*/
+            	break;
+      
+               // break;
             case down:
-                crashed = head.getY() > board.getHeight();
+                //crashed = head.getY() > board.getHeight();
+            	crashed = head.getY() > board.getHeight()|| (head.getX() == head1.getX() && head.getY() == head1.getY()) || (head.getX() == head2.getX() && head.getY() == head2.getY()) || (head.getX() == head3.getX() && head.getY() == head3.getY());
+               
                 break;
             case left:
-                crashed = head.getX() < 0;
+                //crashed = head.getX() < 0;
+            	crashed = head.getY() < 0 || (head.getX() == head1.getX() && head.getY() == head1.getY()) || (head.getX() == head2.getX() && head.getY() == head2.getY()) || (head.getX() == head3.getX() && head.getY() == head3.getY());
+             
                 break;
             case right:
                 crashed = head.getX() > board.getWidth();
+            	//crashed = head.getX() > board.getWidth() || (head.getX() == head1.getX() && head.getY() == head1.getY()) || (head.getX() == head2.getX() && head.getY() == head2.getY()) || (head.getX() == head3.getX() && head.getY() == head3.getY());
+              
                 break;
             default:
                 break;

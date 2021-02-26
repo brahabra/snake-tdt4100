@@ -6,6 +6,7 @@ import controller.SnakeApp;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import model.Coordinate;
+import of6.lf.Tile;
 
 public class FruitModel {
 	
@@ -14,10 +15,14 @@ public class FruitModel {
 	private int y;
 	
 	
+	
 	public FruitModel(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
+	
+	
+	
 	/*
 	public void fillFruit(GraphicsContext graphicsContext, BoardModel board) {
 		int pxSize = board.getPixelSize();
@@ -60,7 +65,7 @@ public class FruitModel {
 	}
 	
 	public int getPositionY() {
-		return x;
+		return y;
 	}
 
 	@Override
