@@ -2,12 +2,13 @@ package model;
 
 import java.util.ArrayList;
 
+import controller.SnakeController;
+
 public class BoardModel {
 	
 	private int height;
 	private int width;
 	private int pixelSize;
-	private FruitModel food;
 	private Coordinate[][] board;
 	private ArrayList<Coordinate> snake;
 	private boolean isGameOver = false;
@@ -48,6 +49,10 @@ public class BoardModel {
 	
 	public FruitModel getFruit() {
 		return fruit;
+	}
+	
+	public void setFruit(FruitModel fruit) {
+		this.fruit = fruit;
 	}
 	/*
 	public boolean inBounds(int x, int y) {

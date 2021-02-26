@@ -22,9 +22,9 @@ import java.util.Random;
 public class BoardController  {
 	
 	private BoardModel game;
+	private Coordinate[][] board;
 	
-	@FXML
-	private Pane board;
+	
 	
 	/*
 	public void initialize() {
@@ -37,6 +37,16 @@ public class BoardController  {
 	public BoardController(BoardModel model) {
 	        this.game = model;
 	   }
+	
+	public Coordinate getFruit(int x, int y) {
+		return this.board[y][x];
+	}
+	
+	public BoardModel getBoard() {
+		return this.game;
+	}
+	
+	
 	/*
 	private void createBoard() {
 	 for (int y = 0; y < game.getHeight(); y++) {
@@ -64,7 +74,7 @@ public class BoardController  {
 	}
 	
 	
-	public void start(Scene scene, GraphicsContext graphicsContext, SnakeModel snake ) {
+	public void start(Scene scene, GraphicsContext graphicsContext, SnakeModel snake) {
 			
 			fillFood(graphicsContext);
 			SnakeController snakeController = new SnakeController(snake);
@@ -97,6 +107,10 @@ public class BoardController  {
 	                    if (snakeController.snakeCrashed(game)) {
 	                        setGameOver();
 	                    }
+	                    /*
+	                    if (eatFruit()) {
+	                    }
+	                   */
 	                }
 	                
 	            }
@@ -168,6 +182,8 @@ public class BoardController  {
 		System.out.println("TEST");
 		
 	}
+
+	
 
 /*
 	private void drawBoard() {
