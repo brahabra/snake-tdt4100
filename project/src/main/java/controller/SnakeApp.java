@@ -23,8 +23,25 @@ public class SnakeApp extends Application {
 	public static final int SCOREBOARD_BANNER_HEIGHT = 30;   // Gitt at denne verdien går opp i pixel_size, hvis ikke så havner hodet litt utenfor. 
 															 // BannerHeight må også være større enn pixelSize 
 	
+	
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primaryStage) {
+		try {
+			Parent parent = FXMLLoader.load(getClass().getResource("StartMenu.fxml"));
+			primaryStage.setScene(new Scene(parent, BOARD_WIDTH * PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE));
+			
+			primaryStage.setTitle("Menu");
+			primaryStage.show();
+		}
+		
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+	
+	//@Override
+	public void startSnake(Stage primaryStage) throws Exception {
 		
 		BorderPane root = new BorderPane();
 		Canvas canvas = new Canvas(BOARD_WIDTH*PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE);
@@ -33,7 +50,7 @@ public class SnakeApp extends Application {
 		Scene scene = new Scene(root, BOARD_WIDTH*PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE);
 		BoardModel board = new BoardModel(BOARD_WIDTH, BOARD_HEIGHT,PIXEL_SIZE);
 		BoardController boardController = new BoardController(board);
-		SnakeModel snake = new SnakeModel(10,15); 
+		SnakeModel snake = new SnakeModel(5,5); 
 		boardController.start(scene, graphicsContext, snake);
 		
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
@@ -82,5 +99,7 @@ public class SnakeApp extends Application {
 
 	public static void main(String[] args) {
 		launch(SnakeApp.class, args);
+		System.out.println("Hei på deg!");
+
 	}
 }
