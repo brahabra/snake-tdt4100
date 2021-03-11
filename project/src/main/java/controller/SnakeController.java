@@ -74,6 +74,7 @@ public class SnakeController {
             this.snakeModel.getSnake().add(new Coordinate(-1,-1));
             this.snakeModel.setIncreasedSpeed();
             boardController.getBoard().increaseFruitScore();
+            boardController.playEatingSound("eatingSound.wav");
             boardController.getBoard().setFruit();
         }
     }
