@@ -25,12 +25,6 @@ public class SnakeApp extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		//Parent parent = FXMLLoader.load(getClass().getResource("Board.fxml"));
-		//primaryStage.setTitle("Snake");
-		//Scene scene = new Scene(parent);
-		//primaryStage.setScene(new Scene(parent));
-		//primaryStage.show();
-		//parent.setOnKeyPressed(event -> { if (parent.getOnKeyPressed() != null) parent.getOnKeyPressed().keyPressed(event); });
 		
 		BorderPane root = new BorderPane();
 		Canvas canvas = new Canvas(BOARD_WIDTH*PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE);
