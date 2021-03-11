@@ -16,7 +16,20 @@ import model.SnakeModel;
 import controller.SnakeApp;
 
 import java.awt.event.KeyAdapter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 
 public class BoardController  {
@@ -74,6 +87,8 @@ public class BoardController  {
 	                    
 	                    if (snakeController.snakeCrashed(game)) {
 	                        setGameOver();
+	                        playGameOverSound("./gameOverSound.wav");
+	                        writeScoreToFile("scorefile.txt");
 	                    }
 	                }
 	                
@@ -81,6 +96,66 @@ public class BoardController  {
 	            
 	        }.start();
 	    }
+	private void writeScoreToFile(String filename) {
+//		try {
+//			PrintWriter writer = new PrintWriter(filename);
+//			writer.println("Din score var: " + game.getFruitScore());
+//		
+//			writer.flush();
+//			writer.close();
+//		
+//	}catch(FileNotFoundException e) {
+//			e.printStackTrace();
+//		}
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+
+		 
+		try {
+			//String filename = "Scoretest.txt";
+			FileWriter fw = new FileWriter(filename, true);
+			fw.write("Din score var: " + game.getFruitScore() + ". Tidspunkt var " + formatter.format(date) + "\n");
+			fw.close();
+		}
+		catch(IOException ioe) 
+		{
+			System.err.println("IOException " + ioe.getMessage());
+		}
+	}
+	
+	public void playEatingSound(String soundFile) {
+	    try {
+	    	File f = new File("./" + soundFile);
+		    AudioInputStream audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());  
+		    Clip clip = AudioSystem.getClip();
+		    clip.open(audioIn);
+		    clip.start();
+	    }
+	    catch(Exception e) {
+	    	System.out.println("Something went wrong!");
+	    }
+	    
+	}
+	
+	public void playGameOverSound(String soundFile) {
+	    try {
+	    	File f = new File("./" + soundFile);
+		    AudioInputStream audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());  
+		    Clip clip = AudioSystem.getClip();
+		    clip.open(audioIn);
+		    clip.start();
+	    }
+	    catch(Exception e) {
+	    	System.out.println("Something went wrong!");
+	    }
+	    
+	}
+	
+//	// TODO LESE FRA FIL
+//	private void getScoresFromFile(String filename) throws FileNotFoundException{
+//		
+//	}
+	
 	    
 	 private void drawGameOver(GraphicsContext graphicsContext) {
 	        graphicsContext.setFont(new Font(50));
