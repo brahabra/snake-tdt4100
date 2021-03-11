@@ -11,12 +11,6 @@ public class Coordinate {
 	       this.y = y;
 	  }
 	
-
-	/*
-	public void setAir() {
-		type = 0;
-	}*/
-	
 	public void setFruit() {
 		type = 1;
 	}
@@ -52,6 +46,4 @@ public class Coordinate {
 	public boolean hasCollision() {
 	     return getType() == 2;
 	}
-
-
 }
