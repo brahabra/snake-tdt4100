@@ -56,7 +56,7 @@ public class BoardController  {
 		graphicsContext.fillRect(fruit.getPositionX() * pxSize,fruit.getPositionY() * pxSize, pxSize - 1, pxSize - 1);
 	}
 	
-	public void start(Scene scene, GraphicsContext graphicsContext, SnakeModel snake) {
+	public void startSnake(Scene scene, GraphicsContext graphicsContext, SnakeModel snake) {
 			
 			fillFood(graphicsContext);
 			SnakeController snakeController = new SnakeController(snake);
@@ -87,7 +87,7 @@ public class BoardController  {
 	                    
 	                    if (snakeController.snakeCrashed(game)) {
 	                        setGameOver();
-	                        playGameOverSound("./gameOverSound.wav");
+	                        playGameOverSound("./gameOverSound2.wav");
 	                        writeScoreToFile("scorefile.txt");
 	                    }
 	                }

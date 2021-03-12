@@ -6,12 +6,21 @@ public class StartMenuController {
 	
 	
 	
-	public void testButton() {
-		System.out.println("Du trykket på knappen :D");
+	public void startGameButton() throws Exception {
+		System.out.println("Du trykket på start game-knappen :D");
+		
 		SnakeApp.startSnake();
+	
 	}
 	
-	public static void main(String[] args) {
+	public void viewHighscoresButton() throws Exception{
+		System.out.println("Du trykket på highscore :D");
+		
+		SnakeApp.viewHighscores();
 		
 	}
+	
+//	public static void main(String[] args) {
+//		
+//	}
 }
