@@ -40,8 +40,28 @@ public class SnakeApp extends Application {
 		
 	}
 	
+	public static void viewHighscores() {
+		
+		Stage primaryStage = new Stage();
+		
+		try {
+			Parent parent = FXMLLoader.load(getClass().getResource("Highscore.fxml"));
+			primaryStage.setScene(new Scene(parent, BOARD_WIDTH * PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE));
+			
+			primaryStage.setTitle("Highscore");
+			primaryStage.show();
+		}
+		
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+	
 	//@Override
-	public void startSnake(Stage primaryStage) throws Exception {
+	public static void startSnake() throws Exception {
+		
+		Stage primaryStage = new Stage();
 		
 		BorderPane root = new BorderPane();
 		Canvas canvas = new Canvas(BOARD_WIDTH*PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE);
@@ -51,7 +71,7 @@ public class SnakeApp extends Application {
 		BoardModel board = new BoardModel(BOARD_WIDTH, BOARD_HEIGHT,PIXEL_SIZE);
 		BoardController boardController = new BoardController(board);
 		SnakeModel snake = new SnakeModel(5,5); 
-		boardController.start(scene, graphicsContext, snake);
+		boardController.startSnake(scene, graphicsContext, snake);
 		
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
 			
@@ -102,4 +122,6 @@ public class SnakeApp extends Application {
 		System.out.println("Hei på deg!");
 
 	}
+
+
 }
