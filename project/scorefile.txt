@@ -1,46 +1,5 @@
-Din score var: 0. Tidspunkt var 11/03/2021 13:39:11
-Din score var: 0. Tidspunkt var 11/03/2021 13:39:22
-Din score var: 1. Tidspunkt var 11/03/2021 13:40:19
-Din score var: 4. Tidspunkt var 11/03/2021 13:40:40
-Din score var: 8. Tidspunkt var 11/03/2021 13:41:19
-Din score var: 13. Tidspunkt var 11/03/2021 13:42:33
-Din score var: 1. Tidspunkt var 11/03/2021 19:01:14
-Din score var: 1. Tidspunkt var 11/03/2021 19:02:28
-Din score var: 7. Tidspunkt var 11/03/2021 19:05:25
-Din score var: 1. Tidspunkt var 11/03/2021 19:09:35
-Din score var: 3. Tidspunkt var 11/03/2021 19:21:35
-Din score var: 9. Tidspunkt var 11/03/2021 19:22:04
-Din score var: 2. Tidspunkt var 11/03/2021 19:22:56
-Din score var: 11. Tidspunkt var 11/03/2021 19:23:47
-Din score var: 0. Tidspunkt var 11/03/2021 19:24:39
-Din score var: 20. Tidspunkt var 11/03/2021 19:26:30
-Din score var: 0. Tidspunkt var 11/03/2021 19:28:23
-Din score var: 0. Tidspunkt var 11/03/2021 19:28:53
-Din score var: 0. Tidspunkt var 12/03/2021 12:56:09
-Din score var: 0. Tidspunkt var 12/03/2021 12:56:10
-Din score var: 0. Tidspunkt var 12/03/2021 12:56:15
-Din score var: 0. Tidspunkt var 12/03/2021 12:56:24
-Din score var: 0. Tidspunkt var 12/03/2021 12:56:27
-Din score var: 0. Tidspunkt var 12/03/2021 12:57:48
-Din score var: 0. Tidspunkt var 12/03/2021 12:58:06
-Din score var: 0. Tidspunkt var 12/03/2021 12:58:08
-Din score var: 0. Tidspunkt var 12/03/2021 12:58:13
-Din score var: 0. Tidspunkt var 12/03/2021 12:58:13
-Din score var: 0. Tidspunkt var 12/03/2021 12:58:13
-Din score var: 0. Tidspunkt var 12/03/2021 12:58:13
-Din score var: 0. Tidspunkt var 12/03/2021 12:58:14
-Din score var: 0. Tidspunkt var 12/03/2021 12:58:14
-Din score var: 0. Tidspunkt var 12/03/2021 12:58:14
-Din score var: 0. Tidspunkt var 12/03/2021 12:58:14
-Din score var: 0. Tidspunkt var 12/03/2021 12:58:15
-Din score var: 16. Tidspunkt var 12/03/2021 13:22:39
-Din score var: 0. Tidspunkt var 12/03/2021 13:30:22
-Din score var: 3. Tidspunkt var 12/03/2021 13:30:55
-Din score var: 0. Tidspunkt var 12/03/2021 13:31:30
-Din score var: 0. Tidspunkt var 12/03/2021 13:31:33
-Din score var: 0. Tidspunkt var 12/03/2021 13:31:33
-Din score var: 0. Tidspunkt var 12/03/2021 13:31:45
-Din score var: 0. Tidspunkt var 12/03/2021 13:35:02
-Din score var: 0. Tidspunkt var 12/03/2021 13:39:21
-Din score var: 0. Tidspunkt var 12/03/2021 13:51:45
-Din score var: 0. Tidspunkt var 12/03/2021 13:55:21
+0;19/03/2021 21:43:15;Mats
+0;19/03/2021 21:45:42;Mats
+19;19/03/2021 21:47:42;Mats
+0;19/03/2021 22:16:59;Mats
+14;19/03/2021 22:18:48;Matsi99

@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 import controller.SnakeController;
+import controller.StartMenuController;
 
 public class BoardModel {
 	
@@ -38,7 +39,6 @@ public class BoardModel {
 	public int getHeight() {
 		return height;
 	}
-
 
 	public int getWidth() {
 		return width;
