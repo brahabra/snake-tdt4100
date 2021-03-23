@@ -31,6 +31,7 @@ public class SnakeApp extends Application {
 			Parent parent = FXMLLoader.load(getClass().getResource("StartMenu.fxml"));
 			primaryStage.setScene(new Scene(parent, BOARD_WIDTH * PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE));
 			
+
 			primaryStage.setTitle("Menu");
 			primaryStage.show();
 		}
@@ -122,8 +123,5 @@ public class SnakeApp extends Application {
 	public static void main(String[] args) {
 		launch(SnakeApp.class, args);
 		System.out.println("Hei på deg!");
-
 	}
-
-
 }
