@@ -27,9 +27,11 @@ public class SnakeApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			//Parent parent = FXMLLoader.load(getClass().getResource("StartMenu.fxml"));
 			Parent parent = FXMLLoader.load(getClass().getResource("StartMenu.fxml"));
 			primaryStage.setScene(new Scene(parent, BOARD_WIDTH * PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE));
 			
+
 			primaryStage.setTitle("Menu");
 			primaryStage.show();
 		}
@@ -39,24 +41,25 @@ public class SnakeApp extends Application {
 		}
 		
 	}
+
 	
-	public static void viewHighscores() {
-		
-		Stage primaryStage = new Stage();
-		
-		try {
-			Parent parent = FXMLLoader.load(getClass().getResource("Highscore.fxml"));
-			primaryStage.setScene(new Scene(parent, BOARD_WIDTH * PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE));
-			
-			primaryStage.setTitle("Highscore");
-			primaryStage.show();
-		}
-		
-		catch(Exception e){
-			e.printStackTrace();
-		}
-		
-	}
+//	public static void viewHighscores() {
+//		Parent root;
+//		try {
+//			
+//			root = FXMLLoader.load(getClass().getClassLoader().getResource("Highscore.fxml"));
+//			Stage primaryStage = new Stage();
+//			primaryStage.setScene(new Scene(root, BOARD_WIDTH * PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE));
+//			
+//			primaryStage.setTitle("Highscore");
+//			primaryStage.show();
+//		}
+//		
+//		catch(Exception e){
+//			e.printStackTrace();
+//		}
+//		
+//	}
 	
 	//@Override
 	public static void startSnake() throws Exception {
@@ -120,8 +123,5 @@ public class SnakeApp extends Application {
 	public static void main(String[] args) {
 		launch(SnakeApp.class, args);
 		System.out.println("Hei på deg!");
-
 	}
-
-
 }

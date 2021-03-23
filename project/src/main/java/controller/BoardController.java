@@ -36,6 +36,7 @@ public class BoardController  {
 	
 	private BoardModel game;
 	private Coordinate[][] board;
+	//private StartMenuController username;
 	
 	public BoardController(BoardModel model) {
 	        this.game = model;
@@ -62,6 +63,7 @@ public class BoardController  {
 			SnakeController snakeController = new SnakeController(snake);
 			BoardController boardController = this;
 			
+			
 	        new AnimationTimer() {
 	            long tick = 0;
 	            
@@ -82,6 +84,7 @@ public class BoardController  {
 	                    snakeController.fillSnake(graphicsContext, game);
 	                    viewScore(graphicsContext);
 	                    fillFood(graphicsContext);
+	                    viewUsername(graphicsContext);
 	                   
 	                    //boardController.fillFood(graphicsContext);
 	                    
@@ -114,7 +117,8 @@ public class BoardController  {
 		try {
 			//String filename = "Scoretest.txt";
 			FileWriter fw = new FileWriter(filename, true);
-			fw.write("Din score var: " + game.getFruitScore() + ". Tidspunkt var " + formatter.format(date) + "\n");
+//			fw.write("Score: " + game.getFruitScore() + " || Date: " + formatter.format(date) + " || Username: " + StartMenuController.getUsername() + "\n");
+			fw.write(game.getFruitScore() + ";" + formatter.format(date) + ";" + StartMenuController.getUsername() + "\n");
 			fw.close();
 		}
 		catch(IOException ioe) 
@@ -132,7 +136,7 @@ public class BoardController  {
 		    clip.start();
 	    }
 	    catch(Exception e) {
-	    	System.out.println("Something went wrong!");
+	    	System.out.println("Could not open the file: " + soundFile);
 	    }
 	    
 	}
@@ -146,15 +150,12 @@ public class BoardController  {
 		    clip.start();
 	    }
 	    catch(Exception e) {
-	    	System.out.println("Something went wrong!");
+	    	System.out.println("Could not open the file: " + soundFile);
 	    }
 	    
 	}
 	
-//	// TODO LESE FRA FIL
-//	private void getScoresFromFile(String filename) throws FileNotFoundException{
-//		
-//	}
+
 	
 	    
 	 private void drawGameOver(GraphicsContext graphicsContext) {
@@ -168,6 +169,13 @@ public class BoardController  {
 		 	graphicsContext.setFont(new Font(15));
 		 	graphicsContext.setFill(Color.BLACK);
 		 	graphicsContext.fillText(scoreText, 20, 490);
+	 }
+	 
+	 private void viewUsername(GraphicsContext graphicsContext) {
+		 	String nameText = StartMenuController.getUsername();
+		 	graphicsContext.setFont(new Font(15));
+		 	graphicsContext.setFill(Color.BLACK);
+		 	graphicsContext.fillText("Username: " + nameText, 150, 490);
 	 }
 	 
     private void setGameOver() {

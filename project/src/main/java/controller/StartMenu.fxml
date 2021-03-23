@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StartMenuController">
    <children>
-      <Button layoutX="132.0" layoutY="163.0" mnemonicParsing="false" onMouseClicked="#startGameButton" text="Play game" />
-      <Button layoutX="338.0" layoutY="163.0" mnemonicParsing="false" onMouseClicked="#viewHighscoresButton" text="Highscores" />
+      <Button fx:id="startGameButton" disable="true" layoutX="189.0" layoutY="175.0" mnemonicParsing="false" onMouseClicked="#startGameButton" text="Play game" />
+      <Text layoutX="29.0" layoutY="72.0" lineSpacing="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SNAKE " textAlignment="CENTER" wrappingWidth="441.2191553115845">
+         <font>
+            <Font name="Gujarati MT" size="43.0" />
+         </font>
+      </Text> 
+      <Text layoutX="139.0" layoutY="252.0" lineSpacing="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HIGHSCORES:" textAlignment="CENTER" wrappingWidth="198.0898240054775">
+         <font>
+            <Font name="Gujarati MT" size="14.0" />
+         </font>
+      </Text>
+      <Button fx:id="enterNameButton" layoutX="318.0" layoutY="112.0" mnemonicParsing="false" onMouseClicked="#setUsername" prefHeight="23.0" prefWidth="54.0" text="Enter" />
+      <TextField fx:id="usernameInput" layoutX="146.0" layoutY="112.0" promptText="Username" />
+      <TextArea fx:id="highscoreText" editable="false" layoutX="32.0" layoutY="267.0" prefHeight="201.0" prefWidth="441.0">
+         <font>
+            <Font size="16.0" />
+         </font></TextArea>
+      <Text fx:id="usernameException" fill="RED" layoutX="9.0" layoutY="158.0" lineSpacing="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid username. Username must be 4 digits, and contain of letters or numbers.&quot;" textAlignment="CENTER" visible="false" wrappingWidth="486.0898240054775">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
