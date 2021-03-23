@@ -109,7 +109,7 @@ public class StartMenuController implements Initializable{
 					String points = parts[0];
 					String time = parts[1];
 					String name = parts[2];
-					System.out.println(points +  time +  name);
+					System.out.println(points + " " +  time + " " +  name);
 					
 					//System.out.println(parts);
 					highscoreText.appendText("POINTS: " + points + ". USERNAME: " + name + ". TIME: " + time + "\n");
