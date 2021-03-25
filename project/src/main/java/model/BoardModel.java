@@ -16,7 +16,6 @@ public class BoardModel {
 	private FruitModel fruit; 
 	private int fruitScore = 0;
 	
-	
 	public BoardModel(int width, int height, int pixelSize){
 		
 		this.height = height;

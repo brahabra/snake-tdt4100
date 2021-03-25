@@ -27,13 +27,13 @@ public class SnakeApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			//Parent parent = FXMLLoader.load(getClass().getResource("StartMenu.fxml"));
 			Parent parent = FXMLLoader.load(getClass().getResource("StartMenu.fxml"));
 			primaryStage.setScene(new Scene(parent, BOARD_WIDTH * PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE));
 			
 
 			primaryStage.setTitle("Menu");
 			primaryStage.show();
+			
 		}
 		
 		catch(Exception e){
@@ -63,6 +63,7 @@ public class SnakeApp extends Application {
 	
 	//@Override
 	public static void startSnake() throws Exception {
+		
 		
 		Stage primaryStage = new Stage();
 		
