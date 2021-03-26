@@ -8,61 +8,40 @@ public class Highscore implements Comparable<Highscore>{
 
 	private String username;
 	private int points;
+	private String date;
 	
-	public Highscore(String username, int points) {
+	
+	public Highscore(String username, int points, String date) {
 		this.username = username;
 		this.points = points;
+		this.date = date;
 	}
 
 	public int getPoints() {
 		return points;
 	}
 	
+	public static String padRight(String s, int n) {
+	     return String.format("%-" + n + "s", s);  
+	}
+
+	public static String padLeft(String s, int n) {
+	    return String.format("%" + n + "s", s);  
+	}
+	
 	@Override
 	public int compareTo(Highscore o) {
 		return Integer.compare(this.points, o.points);
-		
-		//return Integer.compare(this.getSuitValue(this.getSuit()), o.getSuitValue(o.getSuit()));
 	}
-	
 	
 	@Override
 	public String toString() {
-		return this.username + this.points;
+	return this.points + padRight(" ", 20) + padRight(this.username, 30) + padRight(this.date, 10); // + padLeft(this.date, 20);
+	//return this.points + "		 	" + this.username+ "			" + this.date;
 	}
 	
 	public static void main(String[] args) {
-		Highscore a = new Highscore("a", 7);
-		Highscore b = new Highscore("b", 10);
-		Highscore c = new Highscore("c", 18);
-		Highscore d = new Highscore("d", 3);
-		Highscore e = new Highscore("e", 5);
-		Highscore f = new Highscore("f", 23);
-		Highscore g = new Highscore("g", 1);
-		
-		
-		List<Highscore> allScores = new ArrayList<Highscore>();
-		allScores.add(a);
-		allScores.add(b);
-		allScores.add(c);
-		allScores.add(d);
-		allScores.add(e);
-		allScores.add(f);
-		allScores.add(g);
-		
-//		System.out.println(første.getPoints());
-//		System.out.println(første.compareTo(andre));
-		System.out.println(allScores);
-		Collections.sort(allScores);
-		System.out.println(allScores);
-		System.out.println(allScores.get(allScores.size()-1)); 
-		List<Highscore> allScoresThreeBest = allScores.subList(allScores.size() - 3, allScores.size());
-		System.out.println(allScoresThreeBest);
-	}
 
-
-
-	
-	
+	}	
 }
 
