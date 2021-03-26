@@ -36,6 +36,7 @@ public class BoardController  {
 	
 	public static BoardModel game;
 	private Coordinate[][] board;
+	private FileHandler fileHandler;
 	//private StartMenuController username;
 	
 	public BoardController(BoardModel model) {
@@ -91,7 +92,8 @@ public class BoardController  {
 	                    if (snakeController.snakeCrashed(game)) {
 	                        setGameOver();
 	                        playGameOverSound("./gameOverSound2.wav");
-	                        FileHandler.writeScoreToFile("scorefile.txt");
+	                        FileHandler fh = new FileHandler();
+	                        fh.writeScoreToFile("scorefile.txt");
 	                    }
 	                }
 	                
