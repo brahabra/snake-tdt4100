@@ -34,12 +34,12 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class BoardController  {
 	
-	private BoardModel game;
+	public static BoardModel game;
 	private Coordinate[][] board;
 	//private StartMenuController username;
 	
 	public BoardController(BoardModel model) {
-	        this.game = model;
+	        game = model;
 	   }
 	
 	public Coordinate getFruit(int x, int y) {
@@ -47,18 +47,18 @@ public class BoardController  {
 	}
 	
 	public BoardModel getBoard() {
-		return this.game;
+		return game;
 	}
 	
 	public void fillFood(GraphicsContext graphicsContext) {
-		int pxSize = this.game.getPixelSize();
-		FruitModel fruit = this.game.getFruit();
+		int pxSize = game.getPixelSize();
+		FruitModel fruit = game.getFruit();
 		graphicsContext.setFill(Color.RED);
 		graphicsContext.fillRect(fruit.getPositionX() * pxSize,fruit.getPositionY() * pxSize, pxSize - 1, pxSize - 1);
 	}
 	
 	public void startSnake(Scene scene, GraphicsContext graphicsContext, SnakeModel snake) {
-			
+		
 			fillFood(graphicsContext);
 			SnakeController snakeController = new SnakeController(snake);
 			BoardController boardController = this;
@@ -91,7 +91,7 @@ public class BoardController  {
 	                    if (snakeController.snakeCrashed(game)) {
 	                        setGameOver();
 	                        playGameOverSound("./gameOverSound2.wav");
-	                        writeScoreToFile("scorefile.txt");
+	                        FileHandler.writeScoreToFile("scorefile.txt");
 	                    }
 	                }
 	                
@@ -99,34 +99,25 @@ public class BoardController  {
 	            
 	        }.start();
 	    }
-	private void writeScoreToFile(String filename) {
+//	private void writeScoreToFile(String filename) {
+//		
+//		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+//	    Date date = new Date();  
+//
+//		 
 //		try {
-//			PrintWriter writer = new PrintWriter(filename);
-//			writer.println("Din score var: " + game.getFruitScore());
-//		
-//			writer.flush();
-//			writer.close();
-//		
-//	}catch(FileNotFoundException e) {
-//			e.printStackTrace();
+//			//String filename = "Scoretest.txt";
+//			FileWriter fw = new FileWriter(filename, true);
+////			fw.write("Score: " + game.getFruitScore() + " || Date: " + formatter.format(date) + " || Username: " + StartMenuController.getUsername() + "\n");
+//			fw.write(game.getFruitScore() + ";" + formatter.format(date) + ";" + StartMenuController.getUsername() + "\n");
+//			fw.close();
 //		}
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
-	    Date date = new Date();  
-
-		 
-		try {
-			//String filename = "Scoretest.txt";
-			FileWriter fw = new FileWriter(filename, true);
-//			fw.write("Score: " + game.getFruitScore() + " || Date: " + formatter.format(date) + " || Username: " + StartMenuController.getUsername() + "\n");
-			fw.write(game.getFruitScore() + ";" + formatter.format(date) + ";" + StartMenuController.getUsername() + "\n");
-			fw.close();
-		}
-		catch(IOException ioe) 
-		{
-			System.err.println("IOException " + ioe.getMessage());
-		}
-	}
-	
+//		catch(IOException ioe) 
+//		{
+//			System.err.println("IOException " + ioe.getMessage());
+//		}
+//	}
+//	
 	public void playEatingSound(String soundFile) {
 	    try {
 	    	File f = new File("./" + soundFile);
@@ -154,10 +145,7 @@ public class BoardController  {
 	    }
 	    
 	}
-	
 
-	
-	    
 	 private void drawGameOver(GraphicsContext graphicsContext) {
 	        graphicsContext.setFont(new Font(50));
 	        graphicsContext.setFill(Color.RED);
@@ -179,11 +167,11 @@ public class BoardController  {
 	 }
 	 
     private void setGameOver() {
-        this.game.setGameOver();
+        game.setGameOver();
     }
     
     private boolean getIsGameOver() {
-        return this.game.getIsGameOver();
+        return game.getIsGameOver();
     }
 	
 	@FXML

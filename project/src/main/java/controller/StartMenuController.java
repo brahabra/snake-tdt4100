@@ -27,6 +27,8 @@ public class StartMenuController implements Initializable{
 	
 	public static String username; 
 	
+	public FileHandler fileHandler;
+	
 	@FXML
 	private TextField usernameInput;
 	
@@ -36,15 +38,14 @@ public class StartMenuController implements Initializable{
 	@FXML
 	private Button startGameButton;
 	
-	@FXML
-	private TextArea highscoreText;
-
+	@FXML 
+	public TextArea highscoreText;
 	
 	@FXML
 	private void setUsername() {
 		
 		username = usernameInput.getText();
-		if(validateUsername(username)) {
+		if(invalidUsername(username)) {
 			startGameButton.setDisable(false);
 		}
 	
@@ -52,13 +53,14 @@ public class StartMenuController implements Initializable{
 		//String usernameString = username.getText();
 	}
 	
-	@Override
+	
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		getScoresFromFile();
+		String scores = FileHandler.getScoresFromFile();
+		highscoreText.appendText(scores);
 		
 	}
 	
-	private boolean validateUsername(String username) {
+	private boolean invalidUsername(String username) {
 		if(username.length() <= 3 || !username.matches("[a-zA-Z]*$")) {
 			usernameException.setVisible(true);
 			return false;
@@ -72,54 +74,10 @@ public class StartMenuController implements Initializable{
 		return username;
 	}
 	
+	
 	public void startGameButton() throws Exception {
-		
-		System.out.println("Du trykket på start game-knappen :D");
 		SnakeApp.startSnake();
 	}
 	
-	public void getScoresFromFile(){
-		//try {
-			
-			//File myObj = new File("scorefile.txt");
-//			
-//			Scanner myReader = new Scanner(myObj);
-//			while (myReader.hasNextLine()) {
-//				
-//				String data = myReader.readLine();
-//				//System.out.println(data);
-//				highscoreText.setText(data);
-//				
-//			}
-//			myReader.close();
-//		
-//		
-//		}catch (FileNotFoundException e){
-//			System.out.println("Could not find the requested file " + filename + ".");
-//			e.printStackTrace();
-//		}
-			BufferedReader reader;
-			
-			try {
-				reader = new BufferedReader(new FileReader("scorefile.txt"));
-				String line = reader.readLine();
-				
-				while(line != null) {
-					String[] parts = line.split(";");
-					String points = parts[0];
-					String time = parts[1];
-					String name = parts[2];
-					System.out.println(points + " " +  time + " " +  name);
-					
-					//System.out.println(parts);
-					highscoreText.appendText("POINTS: " + points + ". USERNAME: " + name + ". TIME: " + time + "\n");
-					line = reader.readLine();
-				}
-				reader.close();
-			} catch(Exception e) {
-				System.out.println("Could not find the requested file");
-				e.printStackTrace();
-			}
-			
-	   }	
+	
 }

@@ -28,7 +28,7 @@ public class SnakeModel {
 	}
 	
 	public void setIncreasedSpeed() {
-		this.speed += 3;
+		this.speed += 1;
 	}
 	
 	public Dir getDirection() {
