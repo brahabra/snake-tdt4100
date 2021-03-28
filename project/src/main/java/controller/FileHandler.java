@@ -52,7 +52,7 @@ public class FileHandler implements FileHandlerInterface{
 					Integer points = Integer.valueOf(parts[0]);
 					StartMenuController.totalScore += points;
 					StartMenuController.totalGames += 1;
-					String time = parts[1].substring(0, 10);
+					String time = parts[1].substring(0, 16);
 					String name = parts[2];
 					Highscore newHighscore = new Highscore(name, points, time);
 					
@@ -75,12 +75,19 @@ public class FileHandler implements FileHandlerInterface{
 			int placement = 0;
 			
 			for (Highscore highscore : allScores) {
-					placement ++;	
+					placement ++;
 					if(placement <= 10) {
-					output += placement + ".	 			" + highscore.toString() + "\n";
+						if(placement != 10) {
+							output += " " + placement + highscore.toString() + "\n";
+						}
+						else {
+							output += placement + highscore.toString() + "\n";
+							
+						}
 					}
 					
 				}
+
 			return output;
 			
 		} catch(Exception e) {

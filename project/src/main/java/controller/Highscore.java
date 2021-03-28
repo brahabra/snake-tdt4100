@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
 public class Highscore implements Comparable<Highscore>{
 
 	private String username;
 	private int points;
 	private String date;
+
 	
 	
 	public Highscore(String username, int points, String date) {
@@ -29,6 +31,17 @@ public class Highscore implements Comparable<Highscore>{
 	    return String.format("%" + n + "s", s);  
 	}
 	
+	public String formatSpaces(String s) {
+		int spaces = 15;
+		int a = spaces - s.length();
+		
+		String tom = " ";
+		//s += s.repeat(15);
+		s += tom.repeat(a);
+		s += ".";
+		return s;
+	}
+	
 	@Override
 	public int compareTo(Highscore o) {
 		return Integer.compare(this.points, o.points);
@@ -36,12 +49,9 @@ public class Highscore implements Comparable<Highscore>{
 	
 	@Override
 	public String toString() {
-	return this.points + padRight(" ", 20) + padRight(this.username, 30) + padRight(this.date, 10); // + padLeft(this.date, 20);
-	//return this.points + "		 	" + this.username+ "			" + this.date;
+		return padRight(". ", 6) +  this.points + padRight(" ", 7) + padRight(this.username, 16) + this.date; // + padLeft(this.date, 20);
+		//return this.points + padRight(" ", 10)+ formatSpaces(username);
 	}
-	
-	public static void main(String[] args) {
 
-	}	
 }
 
