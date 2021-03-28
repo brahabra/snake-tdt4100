@@ -1,6 +1,7 @@
 package controller;
 
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,11 +9,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.Reader;
 import java.net.URL;
 import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+
+import javax.imageio.ImageIO;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import model.BoardModel;
@@ -52,6 +57,9 @@ public class StartMenuController implements Initializable{
 	public TextField totalGamesField;
 	
 	@FXML
+	public ImageView snakePicture;
+	
+	@FXML
 	private void setUsername() {
 		
 		username = usernameInput.getText();
@@ -64,7 +72,8 @@ public class StartMenuController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		FileHandler fh = new FileHandler();
 		String scores = fh.getScoresFromFile("scorefile.txt");
-		
+		//snakePicture.
+		usernameException.setVisible(false);
 		highscoreText.appendText(scores);
 		averageScore.setText(Integer.toString(totalScore / totalGames));
 		totalGamesField.setText(Integer.toString(totalGames));
