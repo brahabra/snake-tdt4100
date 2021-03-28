@@ -91,7 +91,7 @@ public class BoardController  {
 	                    
 	                    if (snakeController.snakeCrashed(game)) {
 	                        setGameOver();
-	                        playGameOverSound("./gameOverSound2.wav");
+	                        playGameOverSound("./gameOverSound.wav");
 	                        FileHandler fh = new FileHandler();
 	                        fh.writeScoreToFile("scorefile.txt");
 	                    }
