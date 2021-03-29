@@ -86,11 +86,11 @@
             <Font name="Courier New" size="8.0" />
          </font>
       </Text>
-      <TextField fx:id="averageScore" alignment="CENTER" editable="false" layoutX="14.0" layoutY="148.0" prefHeight="24.0" prefWidth="37.0">
+      <TextField fx:id="averageScore" alignment="CENTER" editable="false" layoutX="14.0" layoutY="148.0" prefHeight="26.0" prefWidth="43.0">
          <font>
             <Font name="Courier New" size="13.0" />
          </font></TextField>
-      <TextField fx:id="totalGamesField" alignment="CENTER" editable="false" layoutX="15.0" layoutY="188.0" prefHeight="24.0" prefWidth="37.0">
+      <TextField fx:id="totalGamesField" alignment="CENTER" editable="false" layoutX="15.0" layoutY="188.0" prefHeight="26.0" prefWidth="43.0">
          <font>
             <Font name="Courier New" size="13.0" />
          </font></TextField>
