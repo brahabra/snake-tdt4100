@@ -1,7 +1,7 @@
 package model;
 
 import java.util.Random;
-
+import java.util.concurrent.ThreadLocalRandom;
 import controller.SnakeApp;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -12,6 +12,8 @@ public class FruitModel {
 	private Color fruitColor = Color.RED;
 	private int x;
 	private int y;
+	public Coordinate fruitXY;
+	
 	
 	public FruitModel() {
 		this.x = setPositionX();
@@ -27,17 +29,15 @@ public class FruitModel {
 	}
 	
 	private int setPositionX() {
-		Random randomFruit = new Random();
-		int x = randomFruit.nextInt(SnakeApp.BOARD_WIDTH); 
-		//TODO Fikse at man ikke får kjipe frukter langs ramma, typ. 0 og 50
-		return x;
+		int randomX = ThreadLocalRandom.current().nextInt(1, SnakeApp.BOARD_HEIGHT - 1);
+//		fruitXY.setX(randomX);
+		return randomX;
 	}
 	
 	private int setPositionY() {
-		Random randomFruit = new Random();
-		int y = randomFruit.nextInt(SnakeApp.BOARD_HEIGHT - SnakeApp.SCOREBOARD_BANNER_HEIGHT / SnakeApp.PIXEL_SIZE); 
-		//TODO Fikse at man ikke får kjipe frukter langs ramma, typ. 0 og 50
-		return y;
+		int randomY = ThreadLocalRandom.current().nextInt(1, (SnakeApp.BOARD_HEIGHT - 1) - SnakeApp.SCOREBOARD_BANNER_HEIGHT / SnakeApp.PIXEL_SIZE);
+//		fruitXY.setY(randomY);
+		return randomY;
 	}
 	
 	public int getPositionX() {
@@ -51,5 +51,11 @@ public class FruitModel {
 	@Override
 	public String toString() {
 		return Integer.toString(x) + " " +  Integer.toString(y); 
-	}	
+	}
+	
+	public static void main(String[] args) {
+		//FruitModel hei = new FruitModel();
+		//hei.setPositionX();
+		//System.out.println(fruitXY.getX());
+	}
 }
