@@ -16,8 +16,8 @@ public class FruitModel {
 	
 	
 	public FruitModel() {
-		this.x = setPositionX();
-		this.y = setPositionY();
+		this.x = generateRandomPositionX();
+		this.y = generateRandomPositionY();
 	}
 	
 	public void setFruitColor(Color fruitColor) {
@@ -28,20 +28,29 @@ public class FruitModel {
 		return fruitColor;
 	}
 	
-	private int setPositionX() {
+	public int generateRandomPositionX() {
 		int randomX = ThreadLocalRandom.current().nextInt(1, SnakeApp.BOARD_HEIGHT - 1);
 //		fruitXY.setX(randomX);
 		return randomX;
 	}
 	
-	private int setPositionY() {
+	public int generateRandomPositionY() {
 		int randomY = ThreadLocalRandom.current().nextInt(1, (SnakeApp.BOARD_HEIGHT - 1) - SnakeApp.SCOREBOARD_BANNER_HEIGHT / SnakeApp.PIXEL_SIZE);
 //		fruitXY.setY(randomY);
 		return randomY;
 	}
 	
+	public void setRandomPositionX() {
+		this.x = generateRandomPositionX();
+	}
+
+	public void setRandomPositionY() {
+		this.x = generateRandomPositionY();
+	}
+	
 	public int getPositionX() {
 		return x;
+
 	}
 	
 	public int getPositionY() {
