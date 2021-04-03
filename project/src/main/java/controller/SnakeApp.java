@@ -1,7 +1,14 @@
 package controller;
 
 
+import java.awt.BorderLayout;
+import java.awt.Button;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
 import javafx.application.Application;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -74,7 +81,7 @@ public class SnakeApp extends Application {
 		Scene scene = new Scene(root, BOARD_WIDTH*PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE);
 		BoardModel board = new BoardModel(BOARD_WIDTH, BOARD_HEIGHT,PIXEL_SIZE);
 		BoardController boardController = new BoardController(board);
-		SnakeModel snake = new SnakeModel(5,5); 
+		SnakeModel snake = new SnakeModel(45,5); 
 		boardController.startSnake(scene, graphicsContext, snake);
 		
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {

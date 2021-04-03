@@ -31,17 +31,6 @@ public class Highscore implements Comparable<Highscore>{
 	    return String.format("%" + n + "s", s);  
 	}
 	
-	public String formatSpaces(String s) {
-		int spaces = 15;
-		int a = spaces - s.length();
-		
-		String tom = " ";
-		//s += s.repeat(15);
-		s += tom.repeat(a);
-		s += ".";
-		return s;
-	}
-	
 	@Override
 	public int compareTo(Highscore o) {
 		return Integer.compare(this.points, o.points);
