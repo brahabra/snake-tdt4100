@@ -24,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -72,12 +73,15 @@ public class StartMenuController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		FileHandler fh = new FileHandler();
 		String scores = fh.getScoresFromFile("scorefile.txt");
-		//snakePicture.
+		
+		File file = new File("snakePictureAnimated.png");
+        Image image = new Image(file.toURI().toString());
+        snakePicture.setImage(image);
+        
 		usernameException.setVisible(false);
 		highscoreText.appendText(scores);
 		averageScore.setText(Integer.toString(totalScore / totalGames));
 		totalGamesField.setText(Integer.toString(totalGames));
-		
 	}
 	
 	private boolean invalidUsername(String username) {

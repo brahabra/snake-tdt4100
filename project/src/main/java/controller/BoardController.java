@@ -22,6 +22,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
@@ -51,26 +52,48 @@ public class BoardController  {
 		return game;
 	}
 	
-	public void fillFood(GraphicsContext graphicsContext) {
+	public void fillFood(GraphicsContext graphicsContext, SnakeModel snakeModel) {
 		int pxSize = game.getPixelSize();
 		FruitModel fruit = game.getFruit();
+		
+		while(isFruitInSnake(snakeModel, fruit) != false) {
+			System.out.println(" ****** TEST! OBS OBS OBS. Frukten spawnet i slangen, men ble flyttet automatisk. *******");
+			fruit.setRandomPositionX();
+			fruit.setRandomPositionY();
+		
+		}
+		
 		graphicsContext.setFill(Color.RED);
 		graphicsContext.fillRect(fruit.getPositionX() * pxSize,fruit.getPositionY() * pxSize, pxSize - 1, pxSize - 1);
 	}
 	
+	private boolean isFruitInSnake(SnakeModel snakeModel, FruitModel fruit) {
+		
+		ArrayList<Coordinate> snake = snakeModel.getSnake();
+		
+		for (Coordinate coordinate : snake) {
+			if(coordinate.getX() == fruit.getPositionX() && coordinate.getY() == fruit.getPositionY()) {
+				return true;
+			}
+		}
+		return false;
+		
+	}
+	
 	public void startSnake(Scene scene, GraphicsContext graphicsContext, SnakeModel snake) {
 		
-			fillFood(graphicsContext);
+			fillFood(graphicsContext, snake);
 			SnakeController snakeController = new SnakeController(snake);
 			BoardController boardController = this;
 			
 			
 	        new AnimationTimer() {
 	            long tick = 0;
+	        
 	            
 	            @Override
 	            public void handle(long now) {
-	                
+	            	
 	                if (getIsGameOver()) {
 	                    drawGameOver(graphicsContext);
 	                    this.stop(); // game ends
@@ -84,7 +107,7 @@ public class BoardController  {
 	                    snakeController.eatFruit(boardController);
 	                    snakeController.fillSnake(graphicsContext, game);
 	                    viewScore(graphicsContext);
-	                    fillFood(graphicsContext);
+	                    fillFood(graphicsContext, snake);
 	                    viewUsername(graphicsContext);
 	                   
 	                    //boardController.fillFood(graphicsContext);
@@ -176,10 +199,4 @@ public class BoardController  {
         return game.getIsGameOver();
     }
 	
-	@FXML
-	private void movePosition() {
-		
-		System.out.println("TEST");
-		
-	}
 }
