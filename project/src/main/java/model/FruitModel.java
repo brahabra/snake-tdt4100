@@ -7,7 +7,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import model.Coordinate;
 
-
 public class FruitModel {
 	private Color fruitColor = Color.RED;
 	private int x;
@@ -45,7 +44,7 @@ public class FruitModel {
 	}
 
 	public void setRandomPositionY() {
-		this.x = generateRandomPositionY();
+		this.y = generateRandomPositionY();
 	}
 	
 	public int getPositionX() {

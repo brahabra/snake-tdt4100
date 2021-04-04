@@ -1,6 +1,5 @@
 package controller;
 
-
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
@@ -29,7 +28,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import model.BoardModel;
-
 
 public class StartMenuController implements Initializable{
 	
@@ -90,8 +88,8 @@ public class StartMenuController implements Initializable{
 			return false;
 			//throw new IllegalArgumentException("Invalid username. Username must be between 4 and 10 digits, and contain of letters or numbers.");
 		}
-		usernameException.setVisible(false);
-		return true;
+			usernameException.setVisible(false);
+			return true;
 	}
 	
 	public static String getUsername() {

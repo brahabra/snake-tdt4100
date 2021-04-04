@@ -32,14 +32,12 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-
 public class BoardController  {
 	
 	public static BoardModel game;
 	private Coordinate[][] board;
-	private FileHandler fileHandler;
 	//private StartMenuController username;
-	
+	 
 	public BoardController(BoardModel model) {
 	        game = model;
 	   }
