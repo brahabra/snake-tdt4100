@@ -1,14 +1,6 @@
 package controller;
 
-
-import java.awt.BorderLayout;
-import java.awt.Button;
-
-import javax.swing.JButton;
-import javax.swing.JPanel;
-
 import javafx.application.Application;
-import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,7 +13,6 @@ import model.BoardModel;
 import model.SnakeModel;
 import utils.Dir;
 
-
 public class SnakeApp extends Application {
 
 	public static final int BOARD_WIDTH = 50;
@@ -29,7 +20,6 @@ public class SnakeApp extends Application {
 	public static final int BOARD_HEIGHT = 50;
 	public static final int SCOREBOARD_BANNER_HEIGHT = 30;   // Gitt at denne verdien går opp i pixel_size, hvis ikke så havner hodet litt utenfor. 
 															 // BannerHeight må også være større enn pixelSize 
-	
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -49,7 +39,6 @@ public class SnakeApp extends Application {
 		
 	}
 
-	
 //	public static void viewHighscores() {
 //		Parent root;
 //		try {
@@ -81,7 +70,7 @@ public class SnakeApp extends Application {
 		Scene scene = new Scene(root, BOARD_WIDTH*PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE);
 		BoardModel board = new BoardModel(BOARD_WIDTH, BOARD_HEIGHT,PIXEL_SIZE);
 		BoardController boardController = new BoardController(board);
-		SnakeModel snake = new SnakeModel(45,5); 
+		SnakeModel snake = new SnakeModel(5,5); 
 		boardController.startSnake(scene, graphicsContext, snake);
 		
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
