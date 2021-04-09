@@ -1,14 +1,18 @@
 package controller;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+//import jdk.internal.org.jline.terminal.Terminal;
 import model.BoardModel;
 import model.SnakeModel;
 import utils.Dir;
@@ -21,16 +25,19 @@ public class SnakeApp extends Application {
 	public static final int SCOREBOARD_BANNER_HEIGHT = 30;   // Gitt at denne verdien går opp i pixel_size, hvis ikke så havner hodet litt utenfor. 
 															 // BannerHeight må også være større enn pixelSize 
 	
-	@Override
+	public static Stage startStage;
+	
 	public void start(Stage primaryStage) {
+		//StartMenuController a = new StartMenuController();
+		
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("StartMenu.fxml"));
 			primaryStage.setScene(new Scene(parent, BOARD_WIDTH * PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE));
-			
-
-			primaryStage.setTitle("Menu");
+		
+			primaryStage.setTitle("Start Menu");
 			primaryStage.show();
-			
+			SnakeApp.startStage = primaryStage;
+		
 		}
 		
 		catch(Exception e){
@@ -38,29 +45,11 @@ public class SnakeApp extends Application {
 		}
 		
 	}
-
-//	public static void viewHighscores() {
-//		Parent root;
-//		try {
-//			
-//			root = FXMLLoader.load(getClass().getClassLoader().getResource("Highscore.fxml"));
-//			Stage primaryStage = new Stage();
-//			primaryStage.setScene(new Scene(root, BOARD_WIDTH * PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE));
-//			
-//			primaryStage.setTitle("Highscore");
-//			primaryStage.show();
-//		}
-//		
-//		catch(Exception e){
-//			e.printStackTrace();
-//		}
-//		
-//	}
-	
+		
 	//@Override
 	public static void startSnake() throws Exception {
 		
-		
+
 		Stage primaryStage = new Stage();
 		
 		BorderPane root = new BorderPane();
@@ -106,19 +95,48 @@ public class SnakeApp extends Application {
 						snake.setDirection(Dir.right);
 					}
 					break;
-				default:
+				
+				case M:
+					//SnakeApp.main(null);
+					if(BoardController.getIsGameOver()) {
+						System.out.println("Startmenyen vises");
+						startStage.show();
+						primaryStage.close();
+					}
 					break;
+				case Q:
+					if(BoardController.getIsGameOver()) {
+					System.out.println("Avslutter spillet.");
+					System.exit(0);
+					}
+					break;
+				case SPACE:
+					if(BoardController.getIsGameOver()) {
+						System.out.println("Spillet startet på nytt!");
+						try {
+							primaryStage.close(); // Lukker spillet
+							SnakeApp.startSnake(); // Starter spillet på nytt
+						} catch (Exception e) {
+							e.printStackTrace();
+						}	
+						
+					}
+					break;
+				default:
+				break;
 			}
 		});
 		
-		primaryStage.setTitle("Snake");
+		primaryStage.setTitle("Play Snake");
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		
 		
 	}
 
 	public static void main(String[] args) {
 		launch(SnakeApp.class, args);
-		System.out.println("Hei på deg!");
+		
+		
 	}
 }

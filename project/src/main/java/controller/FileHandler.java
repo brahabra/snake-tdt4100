@@ -33,7 +33,7 @@ import model.BoardModel;
 
 public class FileHandler implements FileHandlerInterface{
 	
-	
+
 	public StartMenuController startMenuController;
 	public static BoardController game;
 	
@@ -77,9 +77,26 @@ public class FileHandler implements FileHandlerInterface{
 			for (Highscore highscore : allScores) {
 					placement ++;
 					if(placement <= 10) {
-						if(placement != 10) {
+						// Litt "stygg" koding bak formateringen på highscores, men :
+						
+						// Case som oppstår hvis man er på topplista (1-9.plass), men har mindre enn 10 poeng.(Veldig sjeldent
+						// dette vil skje). Da legges det til litt space her og der. Samt fjerne punktumen
+						// i toString-en og heller lage et selv her. 
+						if(highscore.getPoints() < 10 && placement != 10) {
+							output += " "  + placement + ". " + highscore.toString().substring(1) + "\n";
+						}
+						
+						// Samme case som ovenfor, men utligne nå lengden på tallet ti samt mindre enn ti poeng.
+						else if(highscore.getPoints() < 10 && placement == 10) {
+							output += placement + ". " + highscore.toString().substring(1) + "\n";
+						}
+						
+						// Hvis man på 1-9.plass og ikke har mindre enn 10 poeng, så formateres det slik. Bare
+						// legger på en space på plasseringen
+						else if(placement != 10) {
 							output += " " + placement + highscore.toString() + "\n";
 						}
+						// Unngår å legge til et space dersom man er på 10.plass.
 						else {
 							output += placement + highscore.toString() + "\n";
 							
