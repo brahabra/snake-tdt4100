@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -36,6 +37,7 @@ public class BoardController  {
 	
 	public static BoardModel game;
 	private Coordinate[][] board;
+	
 	//private StartMenuController username;
 	 
 	public BoardController(BoardModel model) {
@@ -170,21 +172,35 @@ public class BoardController  {
 	}
 
 	 private void drawGameOver(GraphicsContext graphicsContext) {
-	        graphicsContext.setFont(new Font(50));
+	        graphicsContext.setFont(new Font("Courier New", 50));
 	        graphicsContext.setFill(Color.RED);
-	        graphicsContext.fillText("Game over", 125, 250);
+	        graphicsContext.fillText("GAME OVER", 125, 150);
+	       
+	        
+	        graphicsContext.setFont(new Font("Courier New", 20));
+	        graphicsContext.setFill(Color.RED);
+	        graphicsContext.fillText("Hit 'SPACEBAR' to play again!", 100, 250);
+	        
+	        graphicsContext.setFont(new Font("Courier New", 20));
+	        graphicsContext.setFill(Color.RED);
+	        graphicsContext.fillText("Hit 'M' to go back to the menu", 100, 270);
+	        
+	        graphicsContext.setFont(new Font("Courier New", 20));
+	        graphicsContext.setFill(Color.RED);
+	        graphicsContext.fillText("Hit 'Q' to quit Snake", 100, 290);
+	             
 	 }
 	 
 	 private void viewScore(GraphicsContext graphicsContext) {
 		 	String scoreText = String.format("Score: %s", game.getFruitScore());
-		 	graphicsContext.setFont(new Font(15));
+		 	graphicsContext.setFont(new Font("Courier New", 15));
 		 	graphicsContext.setFill(Color.BLACK);
 		 	graphicsContext.fillText(scoreText, 20, 490);
 	 }
 	 
 	 private void viewUsername(GraphicsContext graphicsContext) {
 		 	String nameText = StartMenuController.getUsername();
-		 	graphicsContext.setFont(new Font(15));
+		 	graphicsContext.setFont(new Font("Courier New", 15));
 		 	graphicsContext.setFill(Color.BLACK);
 		 	graphicsContext.fillText("Username: " + nameText, 150, 490);
 	 }
@@ -193,7 +209,7 @@ public class BoardController  {
         game.setGameOver();
     }
     
-    private boolean getIsGameOver() {
+    public static boolean getIsGameOver() {
         return game.getIsGameOver();
     }
 	
