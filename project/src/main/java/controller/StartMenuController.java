@@ -48,10 +48,10 @@ public class StartMenuController implements Initializable{
 	private Button startGameButton;
 	
 	@FXML 
-	public  TextArea highscoreText;
+	public TextArea highscoreText;
 	
 	@FXML 
-	public  TextField averageScore;
+	public TextField averageScore;
 	
 	@FXML 
 	public TextField totalGamesField;
@@ -121,7 +121,7 @@ public class StartMenuController implements Initializable{
 	public void startGameButton() throws Exception {
 		if(invalidUsername(usernameInput.getText())) {
 			SnakeApp.startSnake();
-			SnakeApp.startStage.close();
+			SnakeApp.startStage.hide();
 		}
 		else {
 			startGameButton.setDisable(true);

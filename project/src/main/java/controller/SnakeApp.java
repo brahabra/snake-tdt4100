@@ -99,7 +99,10 @@ public class SnakeApp extends Application {
 				case M:
 					//SnakeApp.main(null);
 					if(BoardController.getIsGameOver()) {
+						
+						//StartMenuController.
 						System.out.println("Startmenyen vises");
+						startStage.close();
 						startStage.show();
 						primaryStage.close();
 					}
@@ -136,6 +139,7 @@ public class SnakeApp extends Application {
 
 	public static void main(String[] args) {
 		launch(SnakeApp.class, args);
+		
 		
 		
 	}

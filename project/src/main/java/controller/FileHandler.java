@@ -36,6 +36,9 @@ public class FileHandler implements FileHandlerInterface{
 
 	public StartMenuController startMenuController;
 	public static BoardController game;
+	public static int topTenScore;
+	public static int topFiveScore;
+	public static int highscoreScore;
 	
 	public String getScoresFromFile(String filename){
 		BufferedReader reader;
@@ -77,6 +80,18 @@ public class FileHandler implements FileHandlerInterface{
 			for (Highscore highscore : allScores) {
 					placement ++;
 					if(placement <= 10) {
+						if(placement == 10) {
+							topTenScore = highscore.getPoints();
+						}
+						
+						if(placement == 5) {
+							topFiveScore = highscore.getPoints();
+						}
+						
+						if(placement == 1) {
+							highscoreScore = highscore.getPoints();
+						}
+						
 						// Litt "stygg" koding bak formateringen på highscores, men :
 						
 						// Case som oppstår hvis man er på topplista (1-9.plass), men har mindre enn 10 poeng.(Veldig sjeldent
