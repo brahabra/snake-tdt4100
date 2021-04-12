@@ -14,7 +14,7 @@ public class BoardModel {
 	private ArrayList<Coordinate> snake;
 	private boolean isGameOver = false;
 	private FruitModel fruit; 
-	private int fruitScore = 0;
+	private static int fruitScore = 0;
 
 	
 	
@@ -25,11 +25,16 @@ public class BoardModel {
 		this.pixelSize = pixelSize;
 		this.fruit = new FruitModel();
 	}
-	public void increaseFruitScore() {
-		this.fruitScore += 1;
+	
+	public static void resetFruitScore() {
+		fruitScore = 0;
 	}
 	
-	public int getFruitScore() {
+	public void increaseFruitScore() {
+		fruitScore += 1;
+	}
+	
+	public static int getFruitScore() {
 		return fruitScore;
 	}
 	

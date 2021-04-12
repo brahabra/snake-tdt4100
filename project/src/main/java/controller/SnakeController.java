@@ -15,6 +15,9 @@ import controller.BoardController;
 public class SnakeController {
     
     public SnakeModel snakeModel;
+ 
+    
+  //  public static BoardModel game;
     
     public SnakeController(SnakeModel model) {
         this.snakeModel = model;
@@ -77,8 +80,9 @@ public class SnakeController {
     public void eatFruit(BoardController boardController) {
     	Coordinate snakeHead = this.snakeModel.getSnake().get(0);
         FruitModel fruit = boardController.getBoard().getFruit();
+ 
     	//System.out.println(fruit);
-      
+        
     	
         if (snakeHead.getX() == fruit.getPositionX() && snakeHead.getY() == fruit.getPositionY()) {
             this.snakeModel.getSnake().add(new Coordinate(-1,-1));
@@ -86,6 +90,33 @@ public class SnakeController {
             boardController.getBoard().increaseFruitScore();
             boardController.playEatingSound("eatingSound.wav");
             boardController.getBoard().setFruit();
+       
+            // Over top 1:
+            // Har med større eller lik fordi vi har implementert slik at hvis tidspunktet
+            // er nyere enn en med samme score, så er det nyeste score som trumfer. 
+            if(BoardModel.getFruitScore() >= FileHandler.highscoreScore) {
+            	System.out.println("Over top 10-scoren som var på" + FileHandler.highscoreScore);
+            	this.snakeModel.setSnakeColor(Color.WHITE);
+            	System.out.println(FileHandler.highscoreScore);
+            }
+            
+            //Innenfor top 5: 
+            else if(BoardModel.getFruitScore() >= FileHandler.topFiveScore) {
+            	System.out.println("Over top 10-scoren som var på" + FileHandler.topFiveScore);
+            	this.snakeModel.setSnakeColor(Color.KHAKI);
+            	System.out.println(FileHandler.topFiveScore);
+            }
+            
+            // Innenfor top 10: 
+            else if(BoardModel.getFruitScore() >= FileHandler.topTenScore) {
+            	System.out.println("Over top 10-scoren som var på" + FileHandler.topTenScore);
+            	//this.snakeModel.setSnakeColor(Color.BROWN);
+            	this.snakeModel.setSnakeColor(Color.SPRINGGREEN);
+            	System.out.println(FileHandler.topTenScore);
+            }
+            
+           
+            
         }
     }
     

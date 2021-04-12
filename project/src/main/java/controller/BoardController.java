@@ -38,7 +38,7 @@ public class BoardController  {
 	public static BoardModel game;
 	private Coordinate[][] board;
 	
-	//private StartMenuController username;
+
 	 
 	public BoardController(BoardModel model) {
 	        game = model;
@@ -80,6 +80,10 @@ public class BoardController  {
 		
 	}
 	
+	// TODO  
+	// Må fikse at det er oppdaqterte data etter hver runde. 
+	
+	
 	public void startSnake(Scene scene, GraphicsContext graphicsContext, SnakeModel snake) {
 		
 			fillFood(graphicsContext, snake);
@@ -95,7 +99,7 @@ public class BoardController  {
 	            public void handle(long now) {
 	            	
 	                if (getIsGameOver()) {
-	                    drawGameOver(graphicsContext);
+	                   // drawGameOver(graphicsContext);
 	                    this.stop(); // game ends
 	                    return;
 	                }
@@ -109,14 +113,27 @@ public class BoardController  {
 	                    viewScore(graphicsContext);
 	                    fillFood(graphicsContext, snake);
 	                    viewUsername(graphicsContext);
+	                    
 	                   
 	                    //boardController.fillFood(graphicsContext);
 	                    
 	                    if (snakeController.snakeCrashed(game)) {
-	                        setGameOver();
-	                        playGameOverSound("./gameOverSound.wav");
-	                        FileHandler fh = new FileHandler();
-	                        fh.writeScoreToFile("scorefile.txt");
+	                    	
+	                    	if(BoardModel.getFruitScore() > FileHandler.highscoreScore){
+	                    		playNewHighScoreSound("./newHighscoreSound.wav");
+	                    		drawNewHighscoreText(graphicsContext);	                    		
+	                    	}
+	                    	
+	                    	else {
+	   	                        playGameOverSound("./gameOverSound.wav");
+	   	                        drawGameOver(graphicsContext);
+	                    	}
+	                    	
+	                    	setGameOver();
+	                    	FileHandler fh = new FileHandler();
+	   	                    fh.writeScoreToFile("scorefile.txt");
+	                    	drawShortCutInformation(graphicsContext);
+	                    	BoardModel.resetFruitScore();                   	
 	                    }
 	                }
 	                
@@ -170,14 +187,31 @@ public class BoardController  {
 	    }
 	    
 	}
+	
+	public void playNewHighScoreSound(String soundFile) {
+	    try {
+	    	File f = new File("./" + soundFile);
+		    AudioInputStream audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());  
+		    Clip clip = AudioSystem.getClip();
+		    clip.open(audioIn);
+		    clip.start();
+	    }
+	    catch(Exception e) {
+	    	System.out.println("Could not open the file: " + soundFile);
+	    }
+	    
+	}
 
 	 private void drawGameOver(GraphicsContext graphicsContext) {
+		 	
 	        graphicsContext.setFont(new Font("Courier New", 50));
 	        graphicsContext.setFill(Color.RED);
-	        graphicsContext.fillText("GAME OVER", 125, 150);
-	       
-	        
-	        graphicsContext.setFont(new Font("Courier New", 20));
+	        graphicsContext.fillText("GAME OVER", 125, 150);       
+	 }
+	 
+	 private void drawShortCutInformation(GraphicsContext graphicsContext) {
+		 
+		 graphicsContext.setFont(new Font("Courier New", 20));
 	        graphicsContext.setFill(Color.RED);
 	        graphicsContext.fillText("Hit 'SPACEBAR' to play again!", 100, 250);
 	        
@@ -188,7 +222,6 @@ public class BoardController  {
 	        graphicsContext.setFont(new Font("Courier New", 20));
 	        graphicsContext.setFill(Color.RED);
 	        graphicsContext.fillText("Hit 'Q' to quit Snake", 100, 290);
-	             
 	 }
 	 
 	 private void viewScore(GraphicsContext graphicsContext) {
@@ -203,6 +236,12 @@ public class BoardController  {
 		 	graphicsContext.setFont(new Font("Courier New", 15));
 		 	graphicsContext.setFill(Color.BLACK);
 		 	graphicsContext.fillText("Username: " + nameText, 150, 490);
+	 }
+	 
+	 public void drawNewHighscoreText(GraphicsContext graphicsContext) {
+			 graphicsContext.setFont(new Font("Courier New", 40));
+		     graphicsContext.setFill(Color.WHITE);
+		     graphicsContext.fillText("NEW HIGHSCORE!!!", 75, 150);
 	 }
 	 
     private void setGameOver() {
