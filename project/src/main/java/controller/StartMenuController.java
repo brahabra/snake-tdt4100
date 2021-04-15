@@ -1,24 +1,9 @@
 package controller;
 
-import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
 import java.net.URL;
-import java.util.Collections;
 import java.util.ResourceBundle;
-import java.util.Scanner;
-
-import javax.imageio.ImageIO;
-
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -26,18 +11,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
-import javafx.stage.Stage;
 import model.BoardModel;
 
 public class StartMenuController implements Initializable{
 	
 	public static BoardModel game; 
 	public static String username; 
-	public static int totalScore = 0;	
-	public static int totalGames = 0;
-	public FileHandler fileHandler;
+	public static int totalScore;	
+	public static int totalGames;
+	private FileHandler fh = new FileHandler();
 	
+	public FileHandler fileHandler;
+
 	@FXML
 	private TextField usernameInput;
 	
@@ -48,13 +33,13 @@ public class StartMenuController implements Initializable{
 	private Button startGameButton;
 	
 	@FXML 
-	public TextArea highscoreText;
+	public  TextArea highscoreText;
 	
 	@FXML 
-	public TextField averageScore;
-	
+	public  TextField averageScore;
+
 	@FXML 
-	public TextField totalGamesField;
+	public  TextField totalGamesField;
 	
 	@FXML
 	public ImageView snakePicture;
@@ -74,10 +59,10 @@ public class StartMenuController implements Initializable{
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		usernameException.setVisible(false);
-		loadHighscores();
+		loadHighscores(fh.getAppStateFile());
 		loadPicture();
 	}
-	
+		
 	private boolean invalidUsername(String username) {
 		
 		//if(username.length() <= 3 || username.length() >= 10 || !username.matches("^.*[a-zA-Z0-9]+.*$")) {
@@ -94,28 +79,35 @@ public class StartMenuController implements Initializable{
 		return username;
 	}
 		
-	public void loadHighscores() {
-		FileHandler fh = new FileHandler();
-		String scores = fh.getScoresFromFile("scorefile.txt");
+	public void loadHighscores(File filename) {
+		String scores = fh.getScoresFromFile(filename);
 		
-		highscoreText.appendText(scores);
-		averageScore.setText(Integer.toString(totalScore / totalGames));
-		totalGamesField.setText(Integer.toString(totalGames));
-
+		if(totalGames != 0 && totalScore != 0) {
+			highscoreText.appendText(scores);
+			totalGamesField.setText(Integer.toString(totalGames));
+			averageScore.setText(Integer.toString(totalScore / totalGames));
+		}
 	}
 	
 	public void loadPicture() {
 		File file = new File("snakePictureAnimated.png");
         Image image = new Image(file.toURI().toString());
         snakePicture.setImage(image);
-	}
-	
+	}	
 	
 	public void refreshHighscores() {
 		FileHandler fh = new FileHandler();
-		String scores = fh.getScoresFromFile("scorefile.txt");
-		highscoreText.setText(scores);
+		//String scores = fh.getScoresFromFile("scorefile.txt");
+		String scores = fh.getScoresFromFile(fh.getAppStateFile());
 		
+		highscoreText.setText(scores);
+		totalGamesField.setText(Integer.toString(totalGames));
+		averageScore.setText(Integer.toString(totalScore / totalGames));
+		
+	}
+	
+	public int getAverageScore() {
+		return totalScore / totalGames;
 	}
 	
 	public void startGameButton() throws Exception {

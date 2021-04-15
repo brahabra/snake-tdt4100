@@ -1,10 +1,13 @@
 package controller;
 
+import java.io.File;
+import java.io.IOException;
+
 public interface FileHandlerInterface {
 	
 	
-	public String getScoresFromFile(String filename);
+	public String getScoresFromFile(File filename);
 	
-	public void writeScoreToFile(String filename);
+	public void writeScoreToFile();
 	
 }	

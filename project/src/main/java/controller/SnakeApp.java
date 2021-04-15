@@ -1,14 +1,11 @@
 package controller;
 
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -24,11 +21,9 @@ public class SnakeApp extends Application {
 	public static final int BOARD_HEIGHT = 50;
 	public static final int SCOREBOARD_BANNER_HEIGHT = 30;   // Gitt at denne verdien går opp i pixel_size, hvis ikke så havner hodet litt utenfor. 
 															 // BannerHeight må også være større enn pixelSize 
-	
 	public static Stage startStage;
 	
 	public void start(Stage primaryStage) {
-		//StartMenuController a = new StartMenuController();
 		
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("StartMenu.fxml"));
@@ -49,9 +44,7 @@ public class SnakeApp extends Application {
 	//@Override
 	public static void startSnake() throws Exception {
 		
-
 		Stage primaryStage = new Stage();
-		
 		BorderPane root = new BorderPane();
 		Canvas canvas = new Canvas(BOARD_WIDTH*PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE);
 		GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
@@ -60,6 +53,7 @@ public class SnakeApp extends Application {
 		BoardModel board = new BoardModel(BOARD_WIDTH, BOARD_HEIGHT,PIXEL_SIZE);
 		BoardController boardController = new BoardController(board);
 		SnakeModel snake = new SnakeModel(5,5); 
+		FileHandler fh = new FileHandler();
 		boardController.startSnake(scene, graphicsContext, snake);
 		
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
@@ -70,27 +64,21 @@ public class SnakeApp extends Application {
 					if (snake.getDirection() != Dir.down) {
 						snake.setDirection(Dir.up);
 					}
-					
-					System.out.println("OPP");
 					break;
 				case S:
 				case DOWN:
 					if (snake.getDirection() != Dir.up) {
 						snake.setDirection(Dir.down);
 					}
-					System.out.println("NED");
 					break;
 				case A:
 				case LEFT:
 					if (snake.getDirection() != Dir.right) {
 						snake.setDirection(Dir.left);
 					}
-					System.out.println("VENSTRE");
-			
 					break;
 				case D:
 				case RIGHT:
-					System.out.println("HØYRE");
 					if (snake.getDirection() != Dir.left) {
 						snake.setDirection(Dir.right);
 					}
@@ -99,8 +87,7 @@ public class SnakeApp extends Application {
 				case M:
 					//SnakeApp.main(null);
 					if(BoardController.getIsGameOver()) {
-						
-						//StartMenuController.
+						fh.getScoresFromFile(fh.getAppStateFile());
 						System.out.println("Startmenyen vises");
 						startStage.close();
 						startStage.show();
@@ -117,6 +104,7 @@ public class SnakeApp extends Application {
 					if(BoardController.getIsGameOver()) {
 						System.out.println("Spillet startet på nytt!");
 						try {
+							fh.getScoresFromFile(fh.getAppStateFile());
 							primaryStage.close(); // Lukker spillet
 							SnakeApp.startSnake(); // Starter spillet på nytt
 						} catch (Exception e) {
@@ -139,8 +127,6 @@ public class SnakeApp extends Application {
 
 	public static void main(String[] args) {
 		launch(SnakeApp.class, args);
-		
-		
-		
+
 	}
 }
