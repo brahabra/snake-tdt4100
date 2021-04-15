@@ -1,18 +1,11 @@
 package controller;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-
 public class Highscore implements Comparable<Highscore>{
 
 	private String username;
 	private int points;
 	private String date;
 
-	
-	
 	public Highscore(String username, int points, String date) {
 		this.username = username;
 		this.points = points;

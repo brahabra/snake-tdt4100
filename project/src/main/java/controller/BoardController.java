@@ -1,37 +1,20 @@
 package controller;
 
 import javafx.animation.AnimationTimer;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import model.BoardModel;
 import model.Coordinate;
 import model.FruitModel;
 import model.SnakeModel;
-import controller.SnakeApp;
-
-import java.awt.event.KeyAdapter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Random;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+
 
 public class BoardController  {
 	
@@ -39,7 +22,6 @@ public class BoardController  {
 	private Coordinate[][] board;
 	
 
-	 
 	public BoardController(BoardModel model) {
 	        game = model;
 	   }
@@ -57,7 +39,7 @@ public class BoardController  {
 		FruitModel fruit = game.getFruit();
 		
 		while(isFruitInSnake(snakeModel, fruit) != false) {
-			System.out.println(" ****** TEST! OBS OBS OBS. Frukten spawnet i slangen, men ble flyttet automatisk. *******");
+			System.out.println(" ****** OBS OBS OBS. Frukten spawnet i slangen, men ble flyttet automatisk. *******");
 			fruit.setRandomPositionX();
 			fruit.setRandomPositionY();
 		
@@ -79,11 +61,7 @@ public class BoardController  {
 		return false;
 		
 	}
-	
-	// TODO  
-	// Må fikse at det er oppdaqterte data etter hver runde. 
-	
-	
+		
 	public void startSnake(Scene scene, GraphicsContext graphicsContext, SnakeModel snake) {
 		
 			fillFood(graphicsContext, snake);
@@ -131,7 +109,8 @@ public class BoardController  {
 	                    	
 	                    	setGameOver();
 	                    	FileHandler fh = new FileHandler();
-	   	                    fh.writeScoreToFile("scorefile.txt");
+	   	                   // fh.writeScoreToFile(fh.getAppStateFile());
+	   	                    fh.writeScoreToFile();
 	                    	drawShortCutInformation(graphicsContext);
 	                    	BoardModel.resetFruitScore();                   	
 	                    }
@@ -141,25 +120,7 @@ public class BoardController  {
 	            
 	        }.start();
 	    }
-//	private void writeScoreToFile(String filename) {
-//		
-//		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
-//	    Date date = new Date();  
-//
-//		 
-//		try {
-//			//String filename = "Scoretest.txt";
-//			FileWriter fw = new FileWriter(filename, true);
-////			fw.write("Score: " + game.getFruitScore() + " || Date: " + formatter.format(date) + " || Username: " + StartMenuController.getUsername() + "\n");
-//			fw.write(game.getFruitScore() + ";" + formatter.format(date) + ";" + StartMenuController.getUsername() + "\n");
-//			fw.close();
-//		}
-//		catch(IOException ioe) 
-//		{
-//			System.err.println("IOException " + ioe.getMessage());
-//		}
-//	}
-//	
+
 	public void playEatingSound(String soundFile) {
 	    try {
 	    	File f = new File("./" + soundFile);

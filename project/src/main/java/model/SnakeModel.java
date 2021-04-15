@@ -51,9 +51,7 @@ public class SnakeModel {
 		this.snakeColor = snakeColor;
 	}
 	
-	
 	private void setSnakeBody(int initSize) {
-		// TODO: Check that body is not longer than board width;
 		for (int i = 0; i < initSize; i++) {
 			this.snakeBody.add(new Coordinate(initSize - 1,0));
 			}
