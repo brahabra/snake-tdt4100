@@ -1,23 +1,14 @@
 package model;
 
-import java.util.ArrayList;
-
-import controller.SnakeController;
-import controller.StartMenuController;
-
 public class BoardModel {
 	
 	private int height;
 	private int width;
 	private int pixelSize;
-	private Coordinate[][] board;
-	private ArrayList<Coordinate> snake;
 	private boolean isGameOver = false;
 	private FruitModel fruit; 
 	private static int fruitScore = 0;
 
-	
-	
 	public BoardModel(int width, int height, int pixelSize){
 		
 		this.height = height;
