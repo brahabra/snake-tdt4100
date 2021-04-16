@@ -97,7 +97,9 @@ public class BoardController  {
 	                    
 	                    if (snakeController.snakeCrashed(game)) {
 	                    	
-	                    	if(BoardModel.getFruitScore() > FileHandler.highscoreScore){
+	                    	// Nyere tidspunkt settes høyere enn et gammelt. Så derfor
+	                    	// større ELLER lik.
+	                    	if(BoardModel.getFruitScore() >= FileHandler.highscoreScore){
 	                    		playNewHighScoreSound("./newHighscoreSound.wav");
 	                    		drawNewHighscoreText(graphicsContext);	                    		
 	                    	}
