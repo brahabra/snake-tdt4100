@@ -13,7 +13,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-
 public class FileHandler implements FileHandlerInterface{
 	
 	public static BoardController game;
