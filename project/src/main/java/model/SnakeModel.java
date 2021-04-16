@@ -56,10 +56,4 @@ public class SnakeModel {
 			this.snakeBody.add(new Coordinate(initSize - 1,0));
 			}
 		}
-	}
-					
-					
-					
-					
-					
-					
+	}			
