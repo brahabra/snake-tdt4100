@@ -2,16 +2,17 @@ package controller;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import model.BoardModel;
+
 
 public class FileHandler implements FileHandlerInterface{
 	
@@ -34,10 +35,11 @@ public class FileHandler implements FileHandlerInterface{
 		StartMenuController.totalScore = 0;
 		
 		try {
-				if (!file.isFile() && !file.exists()) {
+				if (!file.exists()) {
+					file.getParentFile().mkdirs();
 					file.createNewFile();
-				
 				}
+		
 			
 				reader = new BufferedReader(new FileReader(filename));
 				String line = reader.readLine();
@@ -120,7 +122,7 @@ public class FileHandler implements FileHandlerInterface{
 		File file;
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
 	    Date date = new Date();  
-		String outputToFile =  BoardController.game.getFruitScore() +  ";" + formatter.format(date) + ";" + StartMenuController.getUsername() + "\n";
+		String outputToFile =  BoardModel.getFruitScore() +  ";" + formatter.format(date) + ";" + StartMenuController.getUsername() + "\n";
 	    
 	    try {
 	    	file = getAppStateFile();
@@ -152,8 +154,6 @@ public class FileHandler implements FileHandlerInterface{
 	    	}
 	    }
 	}
-
-	
 
 //	public void writeScoreToFile(File filename) {
 //		

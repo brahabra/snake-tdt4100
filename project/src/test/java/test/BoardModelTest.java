@@ -32,4 +32,12 @@ public class BoardModelTest {
 		boardmodel.resetFruitScore();
 		assertEquals(boardmodel.getFruitScore(), 0);
 	}
+	
+	@Test
+	public void testGameOver() {
+		assertEquals(boardmodel.getIsGameOver(), false);
+		boardmodel.setGameOver();
+		assertEquals(boardmodel.getIsGameOver(), true);
+	}
+	
 }

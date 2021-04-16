@@ -88,6 +88,8 @@ public class SnakeApp extends Application {
 					//SnakeApp.main(null);
 					if(BoardController.getIsGameOver()) {
 						fh.getScoresFromFile(fh.getAppStateFile());
+						//StartMenuController a = new StartMenuController();
+						//a.loadHighscores(null);
 						System.out.println("Startmenyen vises");
 						startStage.close();
 						startStage.show();

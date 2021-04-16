@@ -53,14 +53,4 @@ public class FruitModel {
 		return y;
 	}
 
-	@Override
-	public String toString() {
-		return Integer.toString(x) + " " +  Integer.toString(y); 
-	}
-	
-	public static void main(String[] args) {
-		//FruitModel hei = new FruitModel();
-		//hei.setPositionX();
-		//System.out.println(fruitXY.getX());
-	}
 }
