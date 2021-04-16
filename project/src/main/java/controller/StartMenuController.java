@@ -33,19 +33,19 @@ public class StartMenuController implements Initializable{
 	private Button startGameButton;
 	
 	@FXML 
-	public  TextArea highscoreText;
+	private  TextArea highscoreText;
 	
 	@FXML 
-	public  TextField averageScore;
+	private  TextField averageScore;
 
 	@FXML 
-	public  TextField totalGamesField;
+	private  TextField totalGamesField;
 	
 	@FXML
-	public ImageView snakePicture;
+	private ImageView snakePicture;
 	
 	@FXML
-	public Button refreshButton;
+	private Button refreshButton;
 	
 	@FXML
 	private void setUsername() {
@@ -87,6 +87,12 @@ public class StartMenuController implements Initializable{
 			totalGamesField.setText(Integer.toString(totalGames));
 			averageScore.setText(Integer.toString(totalScore / totalGames));
 		}
+		
+		else {
+			totalGamesField.setText(Integer.toString(totalGames));
+			averageScore.setText(Integer.toString(0));
+			highscoreText.appendText(scores);
+		}
 	}
 	
 	public void loadPicture() {
@@ -100,10 +106,17 @@ public class StartMenuController implements Initializable{
 		//String scores = fh.getScoresFromFile("scorefile.txt");
 		String scores = fh.getScoresFromFile(fh.getAppStateFile());
 		
-		highscoreText.setText(scores);
-		totalGamesField.setText(Integer.toString(totalGames));
-		averageScore.setText(Integer.toString(totalScore / totalGames));
+		if(totalGames != 0 && totalScore != 0) {
+			highscoreText.setText(scores);
+			totalGamesField.setText(Integer.toString(totalGames));
+			averageScore.setText(Integer.toString(totalScore / totalGames));
+		}
 		
+		else {
+			totalGamesField.setText(Integer.toString(totalGames));
+			averageScore.setText(Integer.toString(0));
+			highscoreText.setText(scores);
+		}
 	}
 	
 	public int getAverageScore() {
