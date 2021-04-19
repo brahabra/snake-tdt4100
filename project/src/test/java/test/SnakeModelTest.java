@@ -22,6 +22,5 @@ public class SnakeModelTest {
 		assertEquals(snakemodel.getInitSize(), 5);
 		assertEquals(snakemodel.getSpeed(), 2);
 	}
-	
-	
+
 }

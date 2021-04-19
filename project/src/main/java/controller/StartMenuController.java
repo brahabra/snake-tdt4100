@@ -21,7 +21,7 @@ public class StartMenuController implements Initializable{
 	public static int totalGames;
 	private FileHandler fh = new FileHandler();
 	
-	public FileHandler fileHandler;
+	
 
 	
 	
@@ -61,7 +61,7 @@ public class StartMenuController implements Initializable{
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		usernameException.setVisible(false);
-		loadHighscores(fh.getAppStateFile());
+		loadHighscores();
 		loadPicture();
 		
 	}
@@ -82,8 +82,8 @@ public class StartMenuController implements Initializable{
 		return username;
 	}
 		
-	public void loadHighscores(File filename) {
-		String scores = fh.getScoresFromFile(filename);
+	public void loadHighscores() {
+		String scores = fh.getScoresFromFile();
 		
 		if(totalGames != 0 && totalScore != 0) {
 			highscoreText.appendText(scores);
@@ -107,7 +107,7 @@ public class StartMenuController implements Initializable{
 	public void refreshHighscores() {
 		FileHandler fh = new FileHandler();
 		//String scores = fh.getScoresFromFile("scorefile.txt");
-		String scores = fh.getScoresFromFile(fh.getAppStateFile());
+		String scores = fh.getScoresFromFile();
 		
 		if(totalGames != 0 && totalScore != 0) {
 			highscoreText.setText(scores);

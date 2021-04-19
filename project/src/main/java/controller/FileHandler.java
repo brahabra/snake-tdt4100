@@ -25,7 +25,7 @@ public class FileHandler implements FileHandlerInterface{
 		return new File(System.getProperty("user.home") + "/Applications/tdt4100-app/scorefile.txt");
 	}
 
-	public String getScoresFromFile(File filename){
+	public String getScoresFromFile(){
 		BufferedReader reader;
 		File file = getAppStateFile();
 		String output = "";
@@ -39,9 +39,8 @@ public class FileHandler implements FileHandlerInterface{
 					file.getParentFile().mkdirs();
 					file.createNewFile();
 				}
-		
 			
-				reader = new BufferedReader(new FileReader(filename));
+				reader = new BufferedReader(new FileReader(file));
 				String line = reader.readLine();
 				
 				
@@ -154,21 +153,4 @@ public class FileHandler implements FileHandlerInterface{
 	    	}
 	    }
 	}
-
-//	public void writeScoreToFile(File filename) {
-//		
-//		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
-//	    Date date = new Date();  
-//	    
-//		try {
-//			FileWriter fw = new FileWriter(filename, true);
-//			
-//			fw.write(BoardController.game.getFruitScore() + ";" + formatter.format(date) + ";" + StartMenuController.getUsername() + "\n");
-//			fw.close();
-//		}
-//		catch(IOException ioe) 
-//		{
-//			System.err.println("IOException " + ioe.getMessage());
-//		}
-//	}	
 }
