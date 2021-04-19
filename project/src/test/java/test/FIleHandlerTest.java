@@ -12,12 +12,12 @@ import model.BoardModel;
 
 public class FIleHandlerTest {
 	
-	private FileHandler filehandler;
-	private BoardModel boardmodel;
+	private FileHandler fileHandler;
+	private BoardModel boardModel;
 	
 	@BeforeEach
 	public void setup() {
-		filehandler = new FileHandler();
+		fileHandler = new FileHandler();
 	}
 	
 	@Test
