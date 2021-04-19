@@ -102,7 +102,7 @@ public class SnakeController {
             
             //Innenfor top 5: 
             else if(BoardModel.getFruitScore() >= FileHandler.topFiveScore) {
-            	this.snakeModel.setSnakeColor(Color.KHAKI);
+            	this.snakeModel.setSnakeColor(Color.YELLOW);
             }
             
             // Innenfor top 10: 
