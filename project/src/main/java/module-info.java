@@ -4,4 +4,6 @@ open module todolist {
 	requires javafx.fxml;
 	requires javafx.graphics;
 	requires java.desktop;
+	//requires org.junit.jupiter.api;
+	//requires org.eclipse.xtext.xbase.lib;
 }

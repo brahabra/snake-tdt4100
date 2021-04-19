@@ -23,6 +23,8 @@ public class StartMenuController implements Initializable{
 	
 	public FileHandler fileHandler;
 
+	
+	
 	@FXML
 	private TextField usernameInput;
 	
@@ -61,6 +63,7 @@ public class StartMenuController implements Initializable{
 		usernameException.setVisible(false);
 		loadHighscores(fh.getAppStateFile());
 		loadPicture();
+		
 	}
 		
 	private boolean invalidUsername(String username) {
