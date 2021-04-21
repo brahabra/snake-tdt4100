@@ -18,12 +18,12 @@ import javax.sound.sampled.Clip;
 
 public class BoardController  {
 	
-	public static BoardModel game;
+	private BoardModel game;
 	private Coordinate[][] board;
 	
 	public BoardController(BoardModel model) {
 	        game = model;
-	   }
+	}
 	
 	public Coordinate getFruit(int x, int y) {
 		return this.board[y][x];
@@ -41,9 +41,7 @@ public class BoardController  {
 			System.out.println(" ****** OBS OBS OBS. Frukten spawnet i slangen, men ble flyttet automatisk. *******");
 			fruit.setRandomPositionX();
 			fruit.setRandomPositionY();
-		
 		}
-		
 		graphicsContext.setFill(Color.RED);
 		graphicsContext.fillRect(fruit.getPositionX() * pxSize,fruit.getPositionY() * pxSize, pxSize - 1, pxSize - 1);
 	}
@@ -61,12 +59,12 @@ public class BoardController  {
 		
 	}
 		
-	public void startSnake(Scene scene, GraphicsContext graphicsContext, SnakeModel snake) {
+	public void startSnake(Scene scene, GraphicsContext graphicsContext, SnakeModel snake, StartMenuController startMenuController) {
 		
 			fillFood(graphicsContext, snake);
 			SnakeController snakeController = new SnakeController(snake);
 			BoardController boardController = this;
-		
+			
 	        new AnimationTimer() {
 	            long tick = 0;
 	        
@@ -85,15 +83,15 @@ public class BoardController  {
 	                    snakeController.move();
 	                    snakeController.eatFruit(boardController);
 	                    snakeController.fillSnake(graphicsContext, game);
-	                    viewScore(graphicsContext);
+	                    viewScore(graphicsContext, boardController);
 	                    fillFood(graphicsContext, snake);
-	                    viewUsername(graphicsContext);
+	                    viewUsername(graphicsContext, startMenuController);
 	            
 	                    if (snakeController.snakeCrashed(game)) {
 	                    	
 	                    	// Nyere tidspunkt settes høyere enn et gammelt. Så derfor
 	                    	// større ELLER lik.
-	                    	if(BoardModel.getFruitScore() >= FileHandler.highscoreScore){
+	                    	if(boardController.getBoard().getFruitScore() >= FileHandler.highscoreScore){
 	                    		playNewHighScoreSound("./newHighscoreSound.wav");
 	                    		drawNewHighscoreText(graphicsContext);	                    		
 	                    	}
@@ -106,9 +104,9 @@ public class BoardController  {
 	                    	setGameOver();
 	                    	FileHandler fh = new FileHandler();
 	   	                   // fh.writeScoreToFile(fh.getAppStateFile());
-	   	                    fh.writeScoreToFile();
+	   	                    fh.writeScoreToFile(boardController, startMenuController);
 	                    	drawShortCutInformation(graphicsContext);
-	                    	BoardModel.resetFruitScore();                   	
+	                    	boardController.getBoard().resetFruitScore();                 	
 	                    }
 	                }
 	                
@@ -181,15 +179,16 @@ public class BoardController  {
 	     graphicsContext.fillText("Hit 'Q' to quit Snake", 100, 290);
 	 }
 	 
-	 private void viewScore(GraphicsContext graphicsContext) {
-		 String scoreText = String.format("Score: %s", game.getFruitScore());
+	 private void viewScore(GraphicsContext graphicsContext, BoardController boardController) {
+		 //String scoreText = String.format("Score: %s", game.getFruitScore());
+		 String scoreText = String.format("Score: %s", boardController.getBoard().getFruitScore());
 		 graphicsContext.setFont(new Font("Courier New", 15));
 		 graphicsContext.setFill(Color.BLACK);
 		 graphicsContext.fillText(scoreText, 20, 490);
 	 }
 	 
-	 private void viewUsername(GraphicsContext graphicsContext) {
-		String nameText = StartMenuController.getUsername();
+	 private void viewUsername(GraphicsContext graphicsContext, StartMenuController startMenuController) {
+		String nameText = startMenuController.getUsername();
 	 	graphicsContext.setFont(new Font("Courier New", 15));
 	 	graphicsContext.setFill(Color.BLACK);
 	 	graphicsContext.fillText("Username: " + nameText, 150, 490);
@@ -202,11 +201,11 @@ public class BoardController  {
 	 }
 	 
     private void setGameOver() {
-        game.setGameOver();
+        this.game.setGameOver();
     }
     
-    public static boolean getIsGameOver() {
-        return game.getIsGameOver();
+    public boolean getIsGameOver() {
+        return this.game.getIsGameOver();
     }
 	
 }

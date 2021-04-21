@@ -6,10 +6,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.BoardModel;
+import controller.StartMenuController;
 
 public class BoardModelTest {
 	
 	private BoardModel boardModel;
+
 	
 	@BeforeEach
 	public void setup() {
@@ -38,6 +40,16 @@ public class BoardModelTest {
 		assertEquals(boardModel.getIsGameOver(), false);
 		boardModel.setGameOver();
 		assertEquals(boardModel.getIsGameOver(), true);
+	}
+	
+	@Test
+	public void testInvalidUsername() {
+		StartMenuController startMenuController = new StartMenuController();
+		boolean valid = startMenuController.invalidUsername("Username12");
+		assertEquals(valid, true);
+		boolean invalid = startMenuController.invalidUsername("");
+		assertEquals(invalid, false);
+		//TODO Legge til flere edge-caser
 	}
 	
 }

@@ -16,11 +16,11 @@ import model.BoardModel;
 public class StartMenuController implements Initializable{
 	
 	public static BoardModel game; 
-	public static String username; 
+	private String username; 
 	public static int totalScore;	
 	public static int totalGames;
 	private FileHandler fh = new FileHandler();
-
+	
 	@FXML
 	private TextField usernameInput;
 	
@@ -47,10 +47,13 @@ public class StartMenuController implements Initializable{
 	
 	@FXML
 	private void setUsername() {
-		
 		username = usernameInput.getText();
 		if(invalidUsername(username)) {
 			startGameButton.setDisable(false);
+			usernameException.setVisible(false);
+		}
+		else {
+			usernameException.setVisible(true);
 		}
 	}
 
@@ -60,19 +63,13 @@ public class StartMenuController implements Initializable{
 		loadPicture();	
 	}
 		
-	private boolean invalidUsername(String username) {
+	public boolean invalidUsername(String username) {
 		
-		//if(username.length() <= 3 || username.length() >= 10 || !username.matches("^.*[a-zA-Z0-9]+.*$")) {
-		if(!username.matches("^(?=.{4,10}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$"))	{
-			usernameException.setVisible(true);
-			return false;
-			//throw new IllegalArgumentException("Invalid username. Username must be between 4 and 10 digits, and contain of letters or numbers.");
-		}
-			usernameException.setVisible(false);
-			return true;
+		return (username.matches("^(?=.{4,10}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$"));	
 	}
+
 	
-	public static String getUsername() {
+	public String getUsername() {
 		return username;
 	}
 		
@@ -121,11 +118,15 @@ public class StartMenuController implements Initializable{
 	}
 	
 	public void startGameButton() throws Exception {
+		SnakeApp snakeApp = new SnakeApp();
+		
 		if(invalidUsername(usernameInput.getText())) {
-			SnakeApp.startSnake();
-			SnakeApp.startStage.hide();
+			snakeApp.startSnake();
+			snakeApp.getStartStage().hide();
+	
 		}
 		else {
+			usernameException.setVisible(true);
 			startGameButton.setDisable(true);
 		
 		}	

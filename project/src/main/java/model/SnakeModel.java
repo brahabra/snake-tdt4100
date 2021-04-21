@@ -11,7 +11,7 @@ public class SnakeModel {
 	private int speed;
 	private Color snakeColor = Color.GREENYELLOW;
 	private Dir direction = Dir.right;
-	public ArrayList<Coordinate> snakeBody = new ArrayList<>();
+	private ArrayList<Coordinate> snakeBody = new ArrayList<>();
 	
 	public SnakeModel(int initSize, int speed) {
 		this.initSize = initSize;
@@ -51,9 +51,9 @@ public class SnakeModel {
 		this.snakeColor = snakeColor;
 	}
 	
-	private void setSnakeBody(int initSize) {
+	public void setSnakeBody(int initSize) {
 		for (int i = 0; i < initSize; i++) {
-			this.snakeBody.add(new Coordinate(initSize - 1,0));
+			this.snakeBody.add(new Coordinate(initSize - i,0));
 			}
 		}
 	}			
