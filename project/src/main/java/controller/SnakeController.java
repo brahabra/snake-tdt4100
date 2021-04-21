@@ -68,6 +68,7 @@ public class SnakeController {
     public void eatFruit(BoardController boardController) {
     	Coordinate snakeHead = this.snakeModel.getSnake().get(0);
         FruitModel fruit = boardController.getBoard().getFruit();
+ //       FileHandler fh = new FileHandler();
  
         if (snakeHead.getX() == fruit.getPositionX() && snakeHead.getY() == fruit.getPositionY()) {
             this.snakeModel.getSnake().add(new Coordinate(-1,-1));
@@ -83,19 +84,22 @@ public class SnakeController {
             // er nyere enn en med samme score, så er det nyeste score som trumfer. 
             
             // Over top 1:
-            if(BoardModel.getFruitScore() >= FileHandler.highscoreScore) {
+            if(boardController.getBoard().getFruitScore() >= FileHandler.highscoreScore) {
             	this.snakeModel.setSnakeColor(Color.WHITE);
             }
             
             //Innenfor top 5: 
-            else if(BoardModel.getFruitScore() >= FileHandler.topFiveScore) {
+            else if(boardController.getBoard().getFruitScore() >= FileHandler.topFiveScore) {
             	this.snakeModel.setSnakeColor(Color.YELLOW);
             }
             
             // Innenfor top 10: 
-            else if(BoardModel.getFruitScore() >= FileHandler.topTenScore) {
+            else if(boardController.getBoard().getFruitScore() >= FileHandler.topTenScore) {
             	this.snakeModel.setSnakeColor(Color.SPRINGGREEN);
             }
+//            else if(BoardModel.getFruitScore() >= fh.topTenScore) {
+//            	this.snakeModel.setSnakeColor(Color.SPRINGGREEN);
+//            }
         }
     }
 

@@ -7,7 +7,7 @@ public class BoardModel {
 	private int pixelSize;
 	private boolean isGameOver = false;
 	private FruitModel fruit; 
-	private static int fruitScore = 0;
+	private int fruitScore = 0;
 
 	public BoardModel(int width, int height, int pixelSize){
 		
@@ -17,7 +17,7 @@ public class BoardModel {
 		this.fruit = new FruitModel();
 	}
 	
-	public static void resetFruitScore() {
+	public void resetFruitScore() {
 		fruitScore = 0;
 	}
 	
@@ -25,7 +25,7 @@ public class BoardModel {
 		fruitScore += 1;
 	}
 	
-	public static int getFruitScore() {
+	public  int getFruitScore() {
 		return fruitScore;
 	}
 	

@@ -11,20 +11,22 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import model.BoardModel;
 
 
 public class FileHandler implements FileHandlerInterface{
 	
-	public static BoardController game;
 	public static int topTenScore;
 	public static int topFiveScore;
 	public static int highscoreScore;
 	
+	public int getTopTenScore() {
+		return topTenScore;
+	}
+	
 	public File getAppStateFile() {
 		return new File(System.getProperty("user.home") + "/Applications/tdt4100-app/scorefile.txt");
 	}
-
+	
 	public String getScoresFromFile(){
 		BufferedReader reader;
 		File file = getAppStateFile();
@@ -69,6 +71,7 @@ public class FileHandler implements FileHandlerInterface{
 					if(placement <= 10) {
 						if(placement == 10) {
 							topTenScore = highscore.getPoints();
+							
 						}
 						
 						if(placement == 5) {
@@ -116,13 +119,13 @@ public class FileHandler implements FileHandlerInterface{
 	}	
 	
 	// Hentet fra https://beginnersbook.com/2014/01/how-to-write-to-a-file-in-java-using-fileoutputstream/
-	public void writeScoreToFile() {
+	public void writeScoreToFile(BoardController boardController, StartMenuController startMenuController) {
 		
 		FileOutputStream fos = null;
 		File file;
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
 	    Date date = new Date();  
-		String outputToFile =  BoardModel.getFruitScore() +  ";" + formatter.format(date) + ";" + StartMenuController.getUsername() + "\n";
+		String outputToFile =  boardController.getBoard().getFruitScore() +  ";" + formatter.format(date) + ";" + startMenuController.getUsername() + "\n";
 	    
 	    try {
 	    	file = getAppStateFile();
