@@ -105,9 +105,9 @@ public class FileHandler implements FileHandlerInterface{
 						}
 					}
 				}
-			return output;
-			
-		} catch(Exception e) {
+			return output;	
+		} 
+		catch(Exception e) {
 			System.out.println("Could not find the requested file....");
 			e.printStackTrace();
 		}
@@ -115,6 +115,7 @@ public class FileHandler implements FileHandlerInterface{
 		
 	}	
 	
+	// Hentet fra https://beginnersbook.com/2014/01/how-to-write-to-a-file-in-java-using-fileoutputstream/
 	public void writeScoreToFile() {
 		
 		FileOutputStream fos = null;
@@ -134,8 +135,7 @@ public class FileHandler implements FileHandlerInterface{
 	    	byte[] bytesArray = outputToFile.getBytes();
 	    	fos.write(bytesArray);
 	    	fos.flush();
-	    	System.out.println("File written successfully.");
-	    	
+	    		    	
 	    }
 	    catch (IOException ioe) {
 	    	ioe.printStackTrace();

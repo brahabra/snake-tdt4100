@@ -20,11 +20,7 @@ public class StartMenuController implements Initializable{
 	public static int totalScore;	
 	public static int totalGames;
 	private FileHandler fh = new FileHandler();
-	
-	
 
-	
-	
 	@FXML
 	private TextField usernameInput;
 	
@@ -56,14 +52,12 @@ public class StartMenuController implements Initializable{
 		if(invalidUsername(username)) {
 			startGameButton.setDisable(false);
 		}
-
 	}
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		usernameException.setVisible(false);
 		loadHighscores();
-		loadPicture();
-		
+		loadPicture();	
 	}
 		
 	private boolean invalidUsername(String username) {
@@ -135,6 +129,5 @@ public class StartMenuController implements Initializable{
 			startGameButton.setDisable(true);
 		
 		}	
-	
 	}
 }
