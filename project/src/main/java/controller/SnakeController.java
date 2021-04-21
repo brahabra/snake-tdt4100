@@ -13,9 +13,6 @@ import model.FruitModel;
 public class SnakeController {
     
     private SnakeModel snakeModel;
- 
-    
-  //  public static BoardModel game;
     
     public SnakeController(SnakeModel model) {
         this.snakeModel = model;
@@ -23,11 +20,7 @@ public class SnakeController {
     
     public void move(){
         ArrayList<Coordinate> snake = this.snakeModel.getSnake();
-     
         Coordinate head = snake.get(0);
-        
-        
-        //System.out.println(snake);
         
         for (int i = snake.size() - 1; i > 0; i--) {
             snake.get(i).setX(snake.get(i-1).getX());
@@ -63,12 +56,9 @@ public class SnakeController {
         graphicsContext.setFill(Color.WHITE); // fill the background white each time
         graphicsContext.fillRect(0, 0, board.getWidth()*pxSize, board.getHeight()*pxSize); // For å ikke dobbeltegne score
 
-        
-   
         graphicsContext.setFill(Color.BLACK); // fill the background white each time
         graphicsContext.fillRect(0, 0, board.getWidth()*pxSize, board.getHeight()*pxSize - SnakeApp.SCOREBOARD_BANNER_HEIGHT); // Trekker fra 30 for å gi plass til scoreboard.
 
-        
         for (Coordinate s : snake) { // draw snake
             graphicsContext.setFill(this.snakeModel.getSnakeColor());
             graphicsContext.fillRect(s.getX()*pxSize, s.getY()*pxSize, pxSize - 1, pxSize - 1);
@@ -79,9 +69,6 @@ public class SnakeController {
     	Coordinate snakeHead = this.snakeModel.getSnake().get(0);
         FruitModel fruit = boardController.getBoard().getFruit();
  
-    	//System.out.println(fruit);
-        
-    	
         if (snakeHead.getX() == fruit.getPositionX() && snakeHead.getY() == fruit.getPositionY()) {
             this.snakeModel.getSnake().add(new Coordinate(-1,-1));
             this.snakeModel.setIncreasedSpeed();
@@ -109,11 +96,9 @@ public class SnakeController {
             else if(BoardModel.getFruitScore() >= FileHandler.topTenScore) {
             	this.snakeModel.setSnakeColor(Color.SPRINGGREEN);
             }
-         
         }
     }
-    
-    
+
     public boolean snakeCrashed(BoardModel board) {
         ArrayList<Coordinate> snake = this.snakeModel.getSnake();
         boolean crashed = false;
@@ -129,7 +114,6 @@ public class SnakeController {
         }
         
         switch (snakeModel.getDirection()) {
-        	
         
             case up:
             	crashed = (head.getY()  + 1) <= 0;
@@ -150,4 +134,3 @@ public class SnakeController {
         return crashed;
     }
 }
- 

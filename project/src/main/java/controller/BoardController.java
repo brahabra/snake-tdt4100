@@ -21,7 +21,6 @@ public class BoardController  {
 	public static BoardModel game;
 	private Coordinate[][] board;
 	
-
 	public BoardController(BoardModel model) {
 	        game = model;
 	   }
@@ -67,12 +66,10 @@ public class BoardController  {
 			fillFood(graphicsContext, snake);
 			SnakeController snakeController = new SnakeController(snake);
 			BoardController boardController = this;
-			
-			
+		
 	        new AnimationTimer() {
 	            long tick = 0;
 	        
-	            
 	            @Override
 	            public void handle(long now) {
 	            	
@@ -91,10 +88,7 @@ public class BoardController  {
 	                    viewScore(graphicsContext);
 	                    fillFood(graphicsContext, snake);
 	                    viewUsername(graphicsContext);
-	                    
-	                   
-	                    //boardController.fillFood(graphicsContext);
-	                    
+	            
 	                    if (snakeController.snakeCrashed(game)) {
 	                    	
 	                    	// Nyere tidspunkt settes høyere enn et gammelt. Så derfor
@@ -167,44 +161,44 @@ public class BoardController  {
 
 	 private void drawGameOver(GraphicsContext graphicsContext) {
 		 	
-	        graphicsContext.setFont(new Font("Courier New", 50));
-	        graphicsContext.setFill(Color.RED);
-	        graphicsContext.fillText("GAME OVER", 125, 150);       
+		 graphicsContext.setFont(new Font("Courier New", 50));
+		 graphicsContext.setFill(Color.RED);
+	     graphicsContext.fillText("GAME OVER", 125, 150);       
 	 }
 	 
 	 private void drawShortCutInformation(GraphicsContext graphicsContext) {
 		 
 		 graphicsContext.setFont(new Font("Courier New", 20));
-	        graphicsContext.setFill(Color.RED);
-	        graphicsContext.fillText("Hit 'SPACEBAR' to play again!", 100, 250);
+	     graphicsContext.setFill(Color.RED);
+	     graphicsContext.fillText("Hit 'SPACEBAR' to play again!", 100, 250);
 	        
-	        graphicsContext.setFont(new Font("Courier New", 20));
-	        graphicsContext.setFill(Color.RED);
-	        graphicsContext.fillText("Hit 'M' to go back to the menu", 100, 270);
+	     graphicsContext.setFont(new Font("Courier New", 20));
+	     graphicsContext.setFill(Color.RED);
+	     graphicsContext.fillText("Hit 'M' to go back to the menu", 100, 270);
 	        
-	        graphicsContext.setFont(new Font("Courier New", 20));
-	        graphicsContext.setFill(Color.RED);
-	        graphicsContext.fillText("Hit 'Q' to quit Snake", 100, 290);
+	     graphicsContext.setFont(new Font("Courier New", 20));
+	     graphicsContext.setFill(Color.RED);	
+	     graphicsContext.fillText("Hit 'Q' to quit Snake", 100, 290);
 	 }
 	 
 	 private void viewScore(GraphicsContext graphicsContext) {
-		 	String scoreText = String.format("Score: %s", game.getFruitScore());
-		 	graphicsContext.setFont(new Font("Courier New", 15));
-		 	graphicsContext.setFill(Color.BLACK);
-		 	graphicsContext.fillText(scoreText, 20, 490);
+		 String scoreText = String.format("Score: %s", game.getFruitScore());
+		 graphicsContext.setFont(new Font("Courier New", 15));
+		 graphicsContext.setFill(Color.BLACK);
+		 graphicsContext.fillText(scoreText, 20, 490);
 	 }
 	 
 	 private void viewUsername(GraphicsContext graphicsContext) {
-		 	String nameText = StartMenuController.getUsername();
-		 	graphicsContext.setFont(new Font("Courier New", 15));
-		 	graphicsContext.setFill(Color.BLACK);
-		 	graphicsContext.fillText("Username: " + nameText, 150, 490);
+		String nameText = StartMenuController.getUsername();
+	 	graphicsContext.setFont(new Font("Courier New", 15));
+	 	graphicsContext.setFill(Color.BLACK);
+	 	graphicsContext.fillText("Username: " + nameText, 150, 490);
 	 }
 	 
 	 public void drawNewHighscoreText(GraphicsContext graphicsContext) {
-			 graphicsContext.setFont(new Font("Courier New", 40));
-		     graphicsContext.setFill(Color.WHITE);
-		     graphicsContext.fillText("NEW HIGHSCORE!!!", 75, 150);
+		graphicsContext.setFont(new Font("Courier New", 40));
+		graphicsContext.setFill(Color.WHITE);
+		graphicsContext.fillText("NEW HIGHSCORE!!!", 75, 150);
 	 }
 	 
     private void setGameOver() {

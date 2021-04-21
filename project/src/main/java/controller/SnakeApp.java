@@ -32,15 +32,13 @@ public class SnakeApp extends Application {
 			primaryStage.setTitle("Start Menu");
 			primaryStage.show();
 			SnakeApp.startStage = primaryStage;
-		
 		}
 		
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		
 	}
-		
+
 	//@Override
 	public static void startSnake() throws Exception {
 		
@@ -55,7 +53,6 @@ public class SnakeApp extends Application {
 		SnakeModel snake = new SnakeModel(5,5); 
 		FileHandler fh = new FileHandler();
 		boardController.startSnake(scene, graphicsContext, snake);
-		
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
 			
 			switch (key.getCode()) { 
@@ -123,8 +120,6 @@ public class SnakeApp extends Application {
 		primaryStage.setTitle("Play Snake");
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		
-		
 	}
 
 	public static void main(String[] args) {

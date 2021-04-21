@@ -10,7 +10,6 @@ public class FruitModel {
 	private int y;
 	public Coordinate fruitXY;
 	
-	
 	public FruitModel() {
 		this.x = generateRandomPositionX();
 		this.y = generateRandomPositionY();
