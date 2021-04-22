@@ -46,7 +46,7 @@ public class BoardController  {
 		graphicsContext.fillRect(fruit.getPositionX() * pxSize,fruit.getPositionY() * pxSize, pxSize - 1, pxSize - 1);
 	}
 	
-	private boolean isFruitInSnake(SnakeModel snakeModel, FruitModel fruit) {
+	public boolean isFruitInSnake(SnakeModel snakeModel, FruitModel fruit) {
 		
 		ArrayList<Coordinate> snake = snakeModel.getSnake();
 		
@@ -59,7 +59,7 @@ public class BoardController  {
 		
 	}
 		
-	public void startSnake(Scene scene, GraphicsContext graphicsContext, SnakeModel snake, StartMenuController startMenuController) {
+	public void startSnake(Scene scene, GraphicsContext graphicsContext, SnakeModel snake) {
 		
 			fillFood(graphicsContext, snake);
 			SnakeController snakeController = new SnakeController(snake);
@@ -85,26 +85,26 @@ public class BoardController  {
 	                    snakeController.fillSnake(graphicsContext, game);
 	                    viewScore(graphicsContext, boardController);
 	                    fillFood(graphicsContext, snake);
-	                    viewUsername(graphicsContext, startMenuController);
+	                    viewUsername(graphicsContext);
 	            
 	                    if (snakeController.snakeCrashed(game)) {
 	                    	
 	                    	// Nyere tidspunkt settes høyere enn et gammelt. Så derfor
 	                    	// større ELLER lik.
 	                    	if(boardController.getBoard().getFruitScore() >= FileHandler.highscoreScore){
-	                    		playNewHighScoreSound("./newHighscoreSound.wav");
+	                    		playNewHighScoreSound("../project/src/main/resources/newHighscoreSound.wav");
 	                    		drawNewHighscoreText(graphicsContext);	                    		
 	                    	}
 	                    	
 	                    	else {
-	   	                        playGameOverSound("./gameOverSound.wav");
+	   	                        playGameOverSound("../project/src/main/resources/gameOverSound.wav");
 	   	                        drawGameOver(graphicsContext);
 	                    	}
 	                    	
 	                    	setGameOver();
 	                    	FileHandler fh = new FileHandler();
 	   	                   // fh.writeScoreToFile(fh.getAppStateFile());
-	   	                    fh.writeScoreToFile(boardController, startMenuController);
+	   	                    fh.writeScoreToFile(boardController);
 	                    	drawShortCutInformation(graphicsContext);
 	                    	boardController.getBoard().resetFruitScore();                 	
 	                    }
@@ -138,7 +138,7 @@ public class BoardController  {
 		    clip.start();
 	    }
 	    catch(Exception e) {
-	    	System.out.println("Could not open the file: " + soundFile);
+	    	System.out.println("Could not open the file " + soundFile);
 	    }
 	    
 	}
@@ -152,7 +152,7 @@ public class BoardController  {
 		    clip.start();
 	    }
 	    catch(Exception e) {
-	    	System.out.println("Could not open the file: " + soundFile);
+	    	System.out.println("Could not open the file " + soundFile);
 	    }
 	    
 	}
@@ -187,8 +187,8 @@ public class BoardController  {
 		 graphicsContext.fillText(scoreText, 20, 490);
 	 }
 	 
-	 private void viewUsername(GraphicsContext graphicsContext, StartMenuController startMenuController) {
-		String nameText = startMenuController.getUsername();
+	 private void viewUsername(GraphicsContext graphicsContext) {
+		String nameText = StartMenuController.getUsername();
 	 	graphicsContext.setFont(new Font("Courier New", 15));
 	 	graphicsContext.setFill(Color.BLACK);
 	 	graphicsContext.fillText("Username: " + nameText, 150, 490);

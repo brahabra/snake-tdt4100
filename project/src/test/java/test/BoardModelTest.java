@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.BoardModel;
+import model.FruitModel;
+import controller.BoardController;
 import controller.StartMenuController;
 
 public class BoardModelTest {
@@ -15,13 +17,13 @@ public class BoardModelTest {
 	
 	@BeforeEach
 	public void setup() {
-		boardModel = new BoardModel(12, 16, 10);
+		boardModel = new BoardModel(50, 50, 10);
 	}
 	
 	@Test
 	public void testConstructor() {
-		assertEquals(boardModel.getHeight(), 16);
-		assertEquals(boardModel.getWidth(), 12);
+		assertEquals(boardModel.getHeight(), 50);
+		assertEquals(boardModel.getWidth(), 50);
 		assertEquals(boardModel.getPixelSize(), 10);
 	}
 	
@@ -45,11 +47,23 @@ public class BoardModelTest {
 	@Test
 	public void testInvalidUsername() {
 		StartMenuController startMenuController = new StartMenuController();
-		boolean valid = startMenuController.invalidUsername("Username12");
+		
+		boolean valid = startMenuController.invalidUsername("Username17");
 		assertEquals(valid, true);
+		boolean valid2 = startMenuController.invalidUsername("12_34");
+		assertEquals(valid2, true);
+		boolean valid3 = startMenuController.invalidUsername("a.Z.l.W9_q");
+		assertEquals(valid3, true);
+		boolean valid4 = startMenuController.invalidUsername("ABCD");
+		assertEquals(valid4, true);
+		
 		boolean invalid = startMenuController.invalidUsername("");
 		assertEquals(invalid, false);
-		//TODO Legge til flere edge-caser
+		boolean invalid2 = startMenuController.invalidUsername("Brage-2001");
+		assertEquals(invalid2, false);
+		boolean invalid3 = startMenuController.invalidUsername("Brage 123");
+		assertEquals(invalid3, false);
+		boolean invalid4 = startMenuController.invalidUsername("Åshild78");
+		assertEquals(invalid4, false);
 	}
-	
 }

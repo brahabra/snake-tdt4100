@@ -4,6 +4,6 @@ public interface FileHandlerInterface {
 	
 	public String getScoresFromFile();
 	
-	public void writeScoreToFile(BoardController boardController, StartMenuController startMenuController);
+	public void writeScoreToFile(BoardController boardController);
 	
 }	

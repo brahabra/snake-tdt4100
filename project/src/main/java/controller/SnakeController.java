@@ -74,7 +74,7 @@ public class SnakeController {
             this.snakeModel.getSnake().add(new Coordinate(-1,-1));
             this.snakeModel.setIncreasedSpeed();
             boardController.getBoard().increaseFruitScore();
-            boardController.playEatingSound("eatingSound.wav");
+            boardController.playEatingSound("../project/src/main/resources/eatingSound.wav");
             boardController.getBoard().setFruit();
        
             // Det gir ikke så altofr mening at man kan lagre midt og så hente opp spillet igjen senere,

@@ -27,7 +27,7 @@ public class SnakeApp extends Application {
 	public void start(Stage primaryStage) {
 		
 		try {
-			Parent parent = FXMLLoader.load(getClass().getResource("StartMenu.fxml"));
+			Parent parent = FXMLLoader.load(getClass().getResource("/view/StartMenu.fxml"));
 			primaryStage.setScene(new Scene(parent, BOARD_WIDTH * PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE));
 		
 			primaryStage.setTitle("Start Menu");
@@ -66,7 +66,7 @@ public class SnakeApp extends Application {
 //		Parent rootSMC = loader.load();
 //		StartMenuController startMenuController = loader.<StartMenuController>getController();
 	
-		boardController.startSnake(scene, graphicsContext, snake, startMenuController);
+		boardController.startSnake(scene, graphicsContext, snake);
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
 			
 			switch (key.getCode()) { 
