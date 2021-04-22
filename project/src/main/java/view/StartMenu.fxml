@@ -45,7 +45,7 @@
 				<Font name="Courier New" size="13.0" />
 			</font>
 		</TextField>
-		<TextArea fx:id="highscoreText" editable="false" layoutX="16.0" layoutY="255.0" prefHeight="235.0" prefWidth="470.0" scaleShape="false">
+		<TextArea fx:id="highscoreText" editable="false" layoutX="16.0" layoutY="255.0" prefHeight="235.0" prefWidth="470.0" scaleShape="false" wrapText="true">
 			<font>
 				<Font name="Courier New" size="15.0" />
 			</font>

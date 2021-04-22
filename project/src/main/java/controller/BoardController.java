@@ -103,7 +103,7 @@ public class BoardController  {
 	                    	setGameOver();
 	                    	FileHandler fh = new FileHandler();
 	   	                   // fh.writeScoreToFile(fh.getAppStateFile());
-	   	                    fh.writeScoreToFile(boardController);
+	   	                    fh.writeScoreToFile(boardController, "scorefile.txt");
 	                    	drawShortCutInformation(graphicsContext);
 	                    	boardController.getBoard().resetFruitScore();                 	
 	                    }
