@@ -3,6 +3,7 @@ package test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import model.BoardModel;
@@ -21,6 +22,7 @@ public class BoardModelTest {
 	}
 	
 	@Test
+	@DisplayName("Check if construtor is correctly")
 	public void testConstructor() {
 		assertEquals(boardModel.getHeight(), 50);
 		assertEquals(boardModel.getWidth(), 50);
@@ -28,6 +30,7 @@ public class BoardModelTest {
 	}
 	
 	@Test
+	@DisplayName("Check if fruitscore is increasing and reseting correctly")
 	public void testFruitScore() {
 		assertEquals(boardModel.getFruitScore(), 0);
 		boardModel.increaseFruitScore();
@@ -38,6 +41,7 @@ public class BoardModelTest {
 	}
 	
 	@Test
+	@DisplayName("Check if game over is registered")
 	public void testGameOver() {
 		assertEquals(boardModel.getIsGameOver(), false);
 		boardModel.setGameOver();
@@ -45,6 +49,7 @@ public class BoardModelTest {
 	}
 	
 	@Test
+	@DisplayName("Checking if illegal username cannot be used")
 	public void testInvalidUsername() {
 		StartMenuController startMenuController = new StartMenuController();
 		

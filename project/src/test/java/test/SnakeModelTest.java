@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.Iterator;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import controller.SnakeController;
 import model.BoardModel;
@@ -21,18 +22,17 @@ public class SnakeModelTest {
 	public void setup() {
 		snakeModel = new SnakeModel(5, 2);
 		snakeModel2 = new SnakeModel(8, 2);
-		
 	}
 	
 	@Test
+	@DisplayName("Check if construtor is correctly")
 	public void testConstructor() {
 		assertEquals(snakeModel.getInitSize(), 5);
 		assertEquals(snakeModel.getSpeed(), 2);
-		
-		
 	}
 	
 	@Test
+	@DisplayName("Check if snake cannot move outside of the board")
 	public void testSnakeCrashed() {
 		BoardModel boardModel = new BoardModel(50, 50, 10);
 		

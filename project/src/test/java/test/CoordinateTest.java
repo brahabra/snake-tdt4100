@@ -3,6 +3,7 @@ package test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import model.Coordinate;
@@ -17,11 +18,9 @@ private Coordinate coordinate;
 	}
 	
 	@Test
+	@DisplayName("Check if construtor is correctly")
 	public void testConstructor() {
 		assertEquals(coordinate.getX(), 5);
 		assertEquals(coordinate.getY(), 12);
 	}
-	
-	
-	
 }

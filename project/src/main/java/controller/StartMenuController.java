@@ -89,13 +89,12 @@ public class StartMenuController implements Initializable{
 		}
 	}
 	
-	
 	public void loadPicture() {
-		File file = new File("../project/src/main/resources/snakePictureAnimated.png");
-        Image image = new Image(file.toURI().toString());
-        snakePicture.setImage(image);
-	}	
-	
+		File file = new File("../project/src/main/resources/sakePictureAnimated.png");
+		Image image = new Image(file.toURI().toString());
+	    snakePicture.setImage(image);
+	}
+		
 	public void refreshHighscores() {
 		FileHandler fh = new FileHandler();
 		//String scores = fh.getScoresFromFile("scorefile.txt");
