@@ -14,9 +14,9 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StartMenuController">
 	<children>
-		<Text layoutX="177.0" layoutY="98.0" lineSpacing="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SNAKE " textAlignment="CENTER" wrappingWidth="317.3850793838501">
+		<Text layoutX="153.0" layoutY="89.0" lineSpacing="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SNAKE " textAlignment="RIGHT" wrappingWidth="341.1474084854126">
 			<font>
-				<Font name="Algerian" size="95.0" />
+				<Font name="Serif Regular" size="95.0" />
 			</font>
          <fill>
             <RadialGradient centerX="0.4388888888888889" centerY="0.5428571428571428" radius="0.5">
@@ -95,9 +95,9 @@
 				<Font name="Courier New" size="13.0" />
 			</font>
 		</TextField>
-		<ImageView fx:id="snakePicture" fitHeight="104.0" fitWidth="192.0" layoutX="9.0" preserveRatio="true">
+		<ImageView fx:id="snakePicture" fitHeight="104.0" fitWidth="192.0" layoutX="-4.0" layoutY="1.0" preserveRatio="true">
 			<image>
-				<Image url="@../../../../snakePictureAnimated.png" />
+				<Image url="@../../resources/snakePictureAnimated.png" />
 			</image>
 		</ImageView>
 		<Button fx:id="refreshButton" layoutX="414.0" layoutY="221.0" mnemonicParsing="false" onAction="#refreshHighscores" text="Refresh">

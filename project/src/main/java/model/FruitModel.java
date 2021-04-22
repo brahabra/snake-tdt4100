@@ -37,4 +37,13 @@ public class FruitModel {
 	public int getPositionY() {
 		return y;
 	}
+	
+	// Lagd kun for å få testet: 
+	public void setPositionX(int x) {
+		this.x = x;
+	}
+	
+	public void setPositionY(int y) {
+		this.y = y;
+	}
 }

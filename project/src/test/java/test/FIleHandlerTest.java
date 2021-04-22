@@ -22,15 +22,16 @@ public class FIleHandlerTest {
 	
 	@Test
 	public void test() {
-		FileHandler savedNewGame; // Required to ignore Eclipse warning
+//		FileHandler savedNewGame; // Required to ignore Eclipse warning
 //		try {
-//			savedNewGame = filehandler.getScoresFromFile("test-save");
+//			savedNewGame = fileHandler.getScoresFromFile("test-save");
 //		} catch (FileNotFoundException e) {
 //			fail("Could not load saved file");
 //			return;
 //		}
-//		assertEquals(filehandler.toString(), savedNewGame.toString());
-//		assertFalse(boardmodel.getIsGameOver());
+//		assertEquals(fileHandler.toString(), savedNewGame.toString());
+//		assertFalse(boardModel.getIsGameOver());
+//	}
 	}
 }
 

@@ -16,7 +16,7 @@ import model.BoardModel;
 public class StartMenuController implements Initializable{
 	
 	public static BoardModel game; 
-	private String username; 
+	public static String username; 
 	public static int totalScore;	
 	public static int totalGames;
 	private FileHandler fh = new FileHandler();
@@ -69,7 +69,7 @@ public class StartMenuController implements Initializable{
 	}
 
 	
-	public String getUsername() {
+	public static String getUsername() {
 		return username;
 	}
 		
@@ -89,8 +89,9 @@ public class StartMenuController implements Initializable{
 		}
 	}
 	
+	
 	public void loadPicture() {
-		File file = new File("snakePictureAnimated.png");
+		File file = new File("../project/src/main/resources/snakePictureAnimated.png");
         Image image = new Image(file.toURI().toString());
         snakePicture.setImage(image);
 	}	
