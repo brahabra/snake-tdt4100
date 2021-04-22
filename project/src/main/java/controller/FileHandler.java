@@ -19,13 +19,18 @@ public class FileHandler implements FileHandlerInterface{
 	public static int topFiveScore;
 	public static int highscoreScore;
 	
-	public File getAppStateFile() {
-		return new File(System.getProperty("user.home") + "/Applications/tdt4100-app/scorefile.txt");
+	
+	public File getAppStateFile(String fileName) {
+		return new File(System.getProperty("user.home") + "/Applications/tdt4100-app/" + fileName);
 	}
 	
-	public String getScoresFromFile(){
+//	public File setAppStateFile() {
+//		File = 
+//	}
+	
+	public String getScoresFromFile(String filename){
 		BufferedReader reader;
-		File file = getAppStateFile();
+		File file = getAppStateFile(filename);
 		String output = "";
 		List<Highscore> allScores = new ArrayList<Highscore>();
 		
@@ -103,10 +108,17 @@ public class FileHandler implements FileHandlerInterface{
 						}
 					}
 				}
-			return output;	
+			// En tilbakemelding til brukeren dersom filen man leser fra ikke inneholder noen scores. Da må man bare spille et game så er det i gang
+			if (output == "") {
+				output = "ERROR:\nThe list could not be loaded from the file '" + file + "' because it is empty.\nPlease play a game to append a score to the list!";
+				return output;
+			}
+			else {
+				return output;
+			}
 		} 
 		catch(Exception e) {
-			System.out.println("Could not read from requested file '" + getAppStateFile() + "'.");
+			System.out.println("Could not read from requested file '" + getAppStateFile("scorefile.txt") + "'.");
 			e.printStackTrace();
 		}
 		return output;
@@ -114,7 +126,7 @@ public class FileHandler implements FileHandlerInterface{
 	}	
 	
 	// Hentet fra https://beginnersbook.com/2014/01/how-to-write-to-a-file-in-java-using-fileoutputstream/
-	public void writeScoreToFile(BoardController boardController) {
+	public void writeScoreToFile(BoardController boardController, String filename) {
 		
 		FileOutputStream fos = null;
 		File file;
@@ -123,7 +135,7 @@ public class FileHandler implements FileHandlerInterface{
 		String outputToFile =  boardController.getBoard().getFruitScore() +  ";" + formatter.format(date) + ";" + StartMenuController.getUsername() + "\n";
 	    
 	    try {
-	    	file = getAppStateFile();
+	    	file = getAppStateFile(filename);
 	    	fos = new FileOutputStream(file, true);
 	    	
 	    	if (!file.exists()) {
@@ -136,7 +148,7 @@ public class FileHandler implements FileHandlerInterface{
 	    		    	
 	    }
 	    catch (IOException ioe) {
-	    	System.out.println("Could not write to the requested file '" + getAppStateFile() + "'.");
+	    	System.out.println("Could not write to the requested file '" + getAppStateFile("scorefile.txt") + "'.");
 	    	ioe.printStackTrace();
 	    }
 	    

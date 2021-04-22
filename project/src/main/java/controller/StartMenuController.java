@@ -74,7 +74,7 @@ public class StartMenuController implements Initializable{
 	}
 		
 	public void loadHighscores() {
-		String scores = fh.getScoresFromFile();
+		String scores = fh.getScoresFromFile("scorefile.txt");
 		
 		if(totalGames != 0 && totalScore != 0) {
 			highscoreText.appendText(scores);
@@ -98,7 +98,7 @@ public class StartMenuController implements Initializable{
 	public void refreshHighscores() {
 		FileHandler fh = new FileHandler();
 		//String scores = fh.getScoresFromFile("scorefile.txt");
-		String scores = fh.getScoresFromFile();
+		String scores = fh.getScoresFromFile("scorefile.txt");
 		
 		if(totalGames != 0 && totalScore != 0) {
 			highscoreText.setText(scores);

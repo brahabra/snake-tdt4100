@@ -98,7 +98,7 @@ public class SnakeApp extends Application {
 				case M:
 					//SnakeApp.main(null);
 					if(board.getIsGameOver()) {
-						fh.getScoresFromFile();
+						fh.getScoresFromFile("scorefile.txt");
 						//StartMenuController a = new StartMenuController();
 						//a.loadHighscores(null);
 						System.out.println("Startmenyen vises");
@@ -117,7 +117,7 @@ public class SnakeApp extends Application {
 					if(board.getIsGameOver()) {
 						System.out.println("Spillet startet på nytt!");
 						try {
-							fh.getScoresFromFile();
+							fh.getScoresFromFile("scorefile.txt");
 							primaryStage.close(); // Lukker spillet
 							this.startSnake(); // Starter spillet på nytt
 						} catch (Exception e) {
