@@ -3,6 +3,7 @@ package test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import controller.BoardController;
@@ -25,6 +26,7 @@ public class FruitModelTest {
 	}
 		
 	@Test
+	@DisplayName("Check if fruit cannot be placed in the snake")
 	public void testFruitInSnake() {
 		BoardModel boardModel = new BoardModel(50, 50, 10);
 		BoardController boardController = new BoardController(boardModel);

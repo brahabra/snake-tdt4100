@@ -116,7 +116,7 @@ public class SnakeController {
 	   			 return true;
 	   		 }
         }
-        
+
         switch (snakeModel.getDirection()) {
         
             case up:

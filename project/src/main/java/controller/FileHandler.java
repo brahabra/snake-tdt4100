@@ -67,7 +67,6 @@ public class FileHandler implements FileHandlerInterface{
 					if(placement <= 10) {
 						if(placement == 10) {
 							topTenScore = highscore.getPoints();
-							
 						}
 						
 						if(placement == 5) {
@@ -107,7 +106,7 @@ public class FileHandler implements FileHandlerInterface{
 			return output;	
 		} 
 		catch(Exception e) {
-			System.out.println("Could not find the requested file....");
+			System.out.println("Could not read from requested file '" + getAppStateFile() + "'.");
 			e.printStackTrace();
 		}
 		return output;
@@ -137,6 +136,7 @@ public class FileHandler implements FileHandlerInterface{
 	    		    	
 	    }
 	    catch (IOException ioe) {
+	    	System.out.println("Could not write to the requested file '" + getAppStateFile() + "'.");
 	    	ioe.printStackTrace();
 	    }
 	    

@@ -38,7 +38,6 @@ public class BoardController  {
 		FruitModel fruit = game.getFruit();
 		
 		while(isFruitInSnake(snakeModel, fruit) != false) {
-			System.out.println(" ****** OBS OBS OBS. Frukten spawnet i slangen, men ble flyttet automatisk. *******");
 			fruit.setRandomPositionX();
 			fruit.setRandomPositionY();
 		}
@@ -124,7 +123,8 @@ public class BoardController  {
 		    clip.start();
 	    }
 	    catch(Exception e) {
-	    	System.out.println("Could not open the file: " + soundFile);
+	    	System.out.println("Could not open the file '" + soundFile +  "'. Are you sure the 'eat fruit' file name is correct?");
+	    	e.printStackTrace();
 	    }
 	    
 	}
@@ -138,7 +138,8 @@ public class BoardController  {
 		    clip.start();
 	    }
 	    catch(Exception e) {
-	    	System.out.println("Could not open the file " + soundFile);
+	    	System.out.println("Could not open the file '" + soundFile +  "'. Are you sure the the 'game over' file name is correct?");
+	    	e.printStackTrace();
 	    }
 	    
 	}
@@ -152,9 +153,8 @@ public class BoardController  {
 		    clip.start();
 	    }
 	    catch(Exception e) {
-	    	System.out.println("Could not open the file " + soundFile);
+	    	System.out.println("Could not open the file '" + soundFile +  "'. Are you sure the 'new highscore' file name is correct?");
 	    }
-	    
 	}
 
 	 private void drawGameOver(GraphicsContext graphicsContext) {
