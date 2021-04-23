@@ -97,9 +97,6 @@ public class SnakeController {
             else if(boardController.getBoard().getFruitScore() >= FileHandler.topTenScore) {
             	this.snakeModel.setSnakeColor(Color.SPRINGGREEN);
             }
-//            else if(BoardModel.getFruitScore() >= fh.topTenScore) {
-//            	this.snakeModel.setSnakeColor(Color.SPRINGGREEN);
-//            }
         }
     }
 
@@ -108,8 +105,6 @@ public class SnakeController {
         boolean crashed = false;
         Coordinate head = snake.get(0);
         List<Coordinate> body = snake.subList(1, snake.size()); 
-        
-       // System.out.println(body.contains(fruit));
         
         for (int j = 0; j < body.size(); j++) {
 	   		 if (head.getX() == body.get(j).getX() && head.getY() == body.get(j).getY()){

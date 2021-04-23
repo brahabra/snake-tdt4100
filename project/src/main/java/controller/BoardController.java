@@ -55,7 +55,6 @@ public class BoardController  {
 			}
 		}
 		return false;
-		
 	}
 		
 	public void startSnake(Scene scene, GraphicsContext graphicsContext, SnakeModel snake) {
@@ -71,7 +70,6 @@ public class BoardController  {
 	            public void handle(long now) {
 	            	
 	                if (getIsGameOver()) {
-	                   // drawGameOver(graphicsContext);
 	                    this.stop(); // game ends
 	                    return;
 	                }
@@ -102,7 +100,6 @@ public class BoardController  {
 	                    	
 	                    	setGameOver();
 	                    	FileHandler fh = new FileHandler();
-	   	                   // fh.writeScoreToFile(fh.getAppStateFile());
 	   	                    fh.writeScoreToFile(boardController, "scorefile.txt");
 	                    	drawShortCutInformation(graphicsContext);
 	                    	boardController.getBoard().resetFruitScore();                 	
@@ -157,34 +154,32 @@ public class BoardController  {
 	    }
 	}
 
-	 private void drawGameOver(GraphicsContext graphicsContext) {
+	private void drawGameOver(GraphicsContext graphicsContext) {
 		 	
 		 graphicsContext.setFont(new Font("Courier New", 50));
 		 graphicsContext.setFill(Color.RED);
 	     graphicsContext.fillText("GAME OVER", 125, 150);       
 	 }
 	 
-	 private void drawShortCutInformation(GraphicsContext graphicsContext) {
-		 
-		 graphicsContext.setFont(new Font("Courier New", 20));
-	     graphicsContext.setFill(Color.RED);
-	     graphicsContext.fillText("Hit 'SPACEBAR' to play again!", 100, 250);
+	private void drawShortCutInformation(GraphicsContext graphicsContext) {
+		graphicsContext.setFont(new Font("Courier New", 20));
+	    graphicsContext.setFill(Color.RED);
+	    graphicsContext.fillText("Hit 'SPACEBAR' to play again!", 100, 250);
 	        
-	     graphicsContext.setFont(new Font("Courier New", 20));
-	     graphicsContext.setFill(Color.RED);
-	     graphicsContext.fillText("Hit 'M' to go back to the menu", 100, 270);
+	    graphicsContext.setFont(new Font("Courier New", 20));
+	    graphicsContext.setFill(Color.RED);
+	    graphicsContext.fillText("Hit 'M' to go back to the menu", 100, 270);
 	        
-	     graphicsContext.setFont(new Font("Courier New", 20));
-	     graphicsContext.setFill(Color.RED);	
-	     graphicsContext.fillText("Hit 'Q' to quit Snake", 100, 290);
+	    graphicsContext.setFont(new Font("Courier New", 20));
+	    graphicsContext.setFill(Color.RED);	
+	    graphicsContext.fillText("Hit 'Q' to quit Snake", 100, 290);
 	 }
 	 
-	 private void viewScore(GraphicsContext graphicsContext, BoardController boardController) {
-		 //String scoreText = String.format("Score: %s", game.getFruitScore());
-		 String scoreText = String.format("Score: %s", boardController.getBoard().getFruitScore());
-		 graphicsContext.setFont(new Font("Courier New", 15));
-		 graphicsContext.setFill(Color.BLACK);
-		 graphicsContext.fillText(scoreText, 20, 490);
+	private void viewScore(GraphicsContext graphicsContext, BoardController boardController) {
+		String scoreText = String.format("Score: %s", boardController.getBoard().getFruitScore());
+		graphicsContext.setFont(new Font("Courier New", 15));
+	 	graphicsContext.setFill(Color.BLACK);
+	 	graphicsContext.fillText(scoreText, 20, 490);
 	 }
 	 
 	 private void viewUsername(GraphicsContext graphicsContext) {
@@ -200,11 +195,11 @@ public class BoardController  {
 		graphicsContext.fillText("NEW HIGHSCORE!!!", 75, 150);
 	 }
 	 
-    private void setGameOver() {
+	 private void setGameOver() {
         this.game.setGameOver();
     }
     
-    public boolean getIsGameOver() {
+	 public boolean getIsGameOver() {
         return this.game.getIsGameOver();
     }
 	

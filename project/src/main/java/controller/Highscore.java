@@ -32,6 +32,5 @@ public class Highscore implements Comparable<Highscore>{
 	@Override
 	public String toString() {
 		return padRight(". ", 6) +  this.points + padRight(" ", 7) + padRight(this.username, 16) + this.date; // + padLeft(this.date, 20);
-		//return this.points + padRight(" ", 10)+ formatSpaces(username);
 	}
 }

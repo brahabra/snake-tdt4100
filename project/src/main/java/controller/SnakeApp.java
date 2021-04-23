@@ -21,23 +21,27 @@ public class SnakeApp extends Application {
 	public static final int BOARD_HEIGHT = 50;
 	public static final int SCOREBOARD_BANNER_HEIGHT = 30;   // Gitt at denne verdien går opp i pixel_size, hvis ikke så havner hodet litt utenfor. 
 															 // BannerHeight må også være større enn pixelSize 
+	
 	private Stage startStage = new Stage();
 	private Stage primaryStage = new Stage();
+
 	
 	public void start(Stage primaryStage) {
 		
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("/view/StartMenu.fxml"));
-			primaryStage.setScene(new Scene(parent, BOARD_WIDTH * PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE));
-		
 			primaryStage.setTitle("Start Menu");
+			primaryStage.setScene(new Scene(parent, BOARD_WIDTH * PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE));		
 			primaryStage.show();
-			this.startStage = primaryStage;
 		}
 		
 		catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+	
+	public void setStage(Stage startStage) {
+		this.startStage = startStage;
 	}
 	
 	public Stage getStartStage() {
@@ -51,7 +55,6 @@ public class SnakeApp extends Application {
 	//@Override
 	public void startSnake() throws Exception {
 		
-		//Stage primaryStage = new Stage();
 		BorderPane root = new BorderPane();
 		Canvas canvas = new Canvas(BOARD_WIDTH*PIXEL_SIZE, BOARD_HEIGHT*PIXEL_SIZE);
 		GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
@@ -61,11 +64,7 @@ public class SnakeApp extends Application {
 		BoardController boardController = new BoardController(board);
 		SnakeModel snake = new SnakeModel(5,5); 
 		FileHandler fh = new FileHandler();
-		StartMenuController startMenuController = new StartMenuController();
-//		FXMLLoader loader = new FXMLLoader(getClass().getResource("StartMenu.fxml"));
-//		Parent rootSMC = loader.load();
-//		StartMenuController startMenuController = loader.<StartMenuController>getController();
-	
+
 		boardController.startSnake(scene, graphicsContext, snake);
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
 			
@@ -96,14 +95,8 @@ public class SnakeApp extends Application {
 					break;
 				
 				case M:
-					//SnakeApp.main(null);
 					if(board.getIsGameOver()) {
 						fh.getScoresFromFile("scorefile.txt");
-						//StartMenuController a = new StartMenuController();
-						//a.loadHighscores(null);
-						System.out.println("Startmenyen vises");
-						this.startStage.close();
-						//this.startStage.show();
 						primaryStage.close();
 					}
 					break;
@@ -115,7 +108,6 @@ public class SnakeApp extends Application {
 					break;
 				case SPACE:
 					if(board.getIsGameOver()) {
-						System.out.println("Spillet startet på nytt!");
 						try {
 							fh.getScoresFromFile("scorefile.txt");
 							primaryStage.close(); // Lukker spillet

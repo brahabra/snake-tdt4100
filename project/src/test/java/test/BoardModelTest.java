@@ -7,8 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import model.BoardModel;
-import model.FruitModel;
-import controller.BoardController;
 import controller.StartMenuController;
 
 public class BoardModelTest {
@@ -30,7 +28,7 @@ public class BoardModelTest {
 	}
 	
 	@Test
-	@DisplayName("Check if fruitscore is increasing and reseting correctly")
+	@DisplayName("Check if fruitscore is increasing and resetting correctly")
 	public void testFruitScore() {
 		assertEquals(boardModel.getFruitScore(), 0);
 		boardModel.increaseFruitScore();
