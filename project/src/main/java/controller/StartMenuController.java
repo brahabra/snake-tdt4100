@@ -128,10 +128,8 @@ public class StartMenuController implements Initializable{
 		SnakeApp snakeApp = new SnakeApp();
 		
 		if(invalidUsername(usernameInput.getText())) {
-			snakeApp.getStartStage().hide();
-			snakeApp.getStartStage().close();
 			snakeApp.startSnake();
-
+	
 		}
 		else {
 			usernameException.setVisible(true);

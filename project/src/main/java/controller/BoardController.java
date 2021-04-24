@@ -33,11 +33,15 @@ public class BoardController  {
 		return game;
 	}
 	
+	// Fyller brettet med en rød frukt som er tilfeldig satt.
+	// Men før den settes ut, går den gjennom en sjekk isFruitInSnake() som kontrollerer
+	// at frukten ikke skal settes i kroppen. 
 	public void fillFood(GraphicsContext graphicsContext, SnakeModel snakeModel) {
 		int pxSize = game.getPixelSize();
 		FruitModel fruit = game.getFruit();
 		
 		while(isFruitInSnake(snakeModel, fruit) != false) {
+			// Setter nye X og Y-posisjoner i håp om at de ikke er i slangen
 			fruit.setRandomPositionX();
 			fruit.setRandomPositionY();
 		}
@@ -49,6 +53,7 @@ public class BoardController  {
 		
 		ArrayList<Coordinate> snake = snakeModel.getSnake();
 		
+		// Sjekker hvert koordinat i slangekroppen sin X og Y-verdi opp mpt frukten sin X og Y-verdi.
 		for (Coordinate coordinate : snake) {
 			if(coordinate.getX() == fruit.getPositionX() && coordinate.getY() == fruit.getPositionY()) {
 				return true;
@@ -63,6 +68,7 @@ public class BoardController  {
 			SnakeController snakeController = new SnakeController(snake);
 			BoardController boardController = this;
 			
+			
 	        new AnimationTimer() {
 	            long tick = 0;
 	        
@@ -70,11 +76,11 @@ public class BoardController  {
 	            public void handle(long now) {
 	            	
 	                if (getIsGameOver()) {
-	                    this.stop(); // game ends
+	                    this.stop(); // Stopper spillet
 	                    return;
 	                }
 	                
-	                if (tick == 0 || now - tick > 1000000000 / snake.getSpeed()) { // to handle the speed of the game
+	                if (tick == 0 || now - tick > 1000000000 / snake.getSpeed()) { // for å håndtere animasjonen brukes tick 
 	                    tick = now;
 	                    
 	                    snakeController.move();
@@ -86,8 +92,7 @@ public class BoardController  {
 	            
 	                    if (snakeController.snakeCrashed(game)) {
 	                    	
-	                    	// Nyere tidspunkt settes høyere enn et gammelt. Så derfor
-	                    	// større ELLER lik.
+	                    	// Nyere tidspunkt settes høyere enn et gammelt. Så derfor større ELLER lik.
 	                    	if(boardController.getBoard().getFruitScore() >= FileHandler.highscoreScore){
 	                    		playNewHighScoreSound("../project/src/main/resources/newHighscoreSound.wav");
 	                    		drawNewHighscoreText(graphicsContext);	                    		
@@ -102,7 +107,7 @@ public class BoardController  {
 	                    	FileHandler fh = new FileHandler();
 	   	                    fh.writeScoreToFile(boardController, "scorefile.txt");
 	                    	drawShortCutInformation(graphicsContext);
-	                    	boardController.getBoard().resetFruitScore();                 	
+	                    	//boardController.getBoard().resetFruitScore();                 	
 	                    }
 	                }
 	                
@@ -123,7 +128,6 @@ public class BoardController  {
 	    	System.out.println("Could not open the file '" + soundFile +  "'. Are you sure the 'eat fruit' file name is correct?");
 	    	e.printStackTrace();
 	    }
-	    
 	}
 	
 	public void playGameOverSound(String soundFile) {
@@ -154,7 +158,7 @@ public class BoardController  {
 	    }
 	}
 
-	private void drawGameOver(GraphicsContext graphicsContext) {
+	public void drawGameOver(GraphicsContext graphicsContext) {
 		 	
 		 graphicsContext.setFont(new Font("Courier New", 50));
 		 graphicsContext.setFill(Color.RED);
@@ -172,10 +176,10 @@ public class BoardController  {
 	        
 	    graphicsContext.setFont(new Font("Courier New", 20));
 	    graphicsContext.setFill(Color.RED);	
-	    graphicsContext.fillText("Hit 'Q' to quit Snake", 100, 290);
+	    graphicsContext.fillText("Hit 'ESC' or 'Q' to quit Snake", 100, 290);
 	 }
 	 
-	private void viewScore(GraphicsContext graphicsContext, BoardController boardController) {
+	public void viewScore(GraphicsContext graphicsContext, BoardController boardController) {
 		String scoreText = String.format("Score: %s", boardController.getBoard().getFruitScore());
 		graphicsContext.setFont(new Font("Courier New", 15));
 	 	graphicsContext.setFill(Color.BLACK);

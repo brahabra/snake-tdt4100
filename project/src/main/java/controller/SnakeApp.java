@@ -52,7 +52,9 @@ public class SnakeApp extends Application {
 		return primaryStage;
 	}
 
-	//@Override
+	// Bruker canvas istedenfor for JavaFX på selve spillbrettet. Egner seg bedre til animasjoner, og 
+	// da fikk vi også prøvd oss på to ulike "teknikker". 
+	
 	public void startSnake() throws Exception {
 		
 		BorderPane root = new BorderPane();
@@ -64,7 +66,7 @@ public class SnakeApp extends Application {
 		BoardController boardController = new BoardController(board);
 		SnakeModel snake = new SnakeModel(5,5); 
 		FileHandler fh = new FileHandler();
-
+		
 		boardController.startSnake(scene, graphicsContext, snake);
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
 			
@@ -100,9 +102,9 @@ public class SnakeApp extends Application {
 						primaryStage.close();
 					}
 					break;
+				case ESCAPE:
 				case Q:
 					if(board.getIsGameOver()) {
-					System.out.println("Avslutter spillet.");
 					System.exit(0);
 					}
 					break;
