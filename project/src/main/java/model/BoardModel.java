@@ -1,5 +1,7 @@
 package model;
 
+import controller.StartMenuController;
+
 public class BoardModel {
 	
 	private int height;
@@ -55,5 +57,19 @@ public class BoardModel {
 	
 	public void setGameOver() {
 		this.isGameOver = true; 
+	}
+	
+	//Lagd kun for å få testet: 
+	
+	public void setFruitScore(int fruitScore) {
+		this.fruitScore = fruitScore;
+	}
+	
+	public void setUsername(String username) {
+		StartMenuController.username = username;
+	}
+	
+	public String getUsername() {
+		return StartMenuController.getUsername();
 	}
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -11,11 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import model.BoardModel;
 
 public class StartMenuController implements Initializable{
 	
-	public static BoardModel game; 
 	public static String username; 
 	public static int totalScore;	
 	public static int totalGames;
@@ -60,7 +59,12 @@ public class StartMenuController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		usernameException.setVisible(false);
 		loadHighscores();
-		loadPicture();	
+		
+		try {
+			loadPicture();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
 	}
 		
 	public boolean invalidUsername(String username) {
@@ -89,15 +93,18 @@ public class StartMenuController implements Initializable{
 		}
 	}
 	
-	public void loadPicture() {
-		File file = new File("../project/src/main/resources/sakePictureAnimated.png");
+	public void loadPicture() throws Exception {
+		File file = new File("../project/src/main/resources/snakePictureAnimated.png");
 		Image image = new Image(file.toURI().toString());
 	    snakePicture.setImage(image);
+	    
+	    if(!file.exists()) {
+			throw new FileNotFoundException("Could not find the requested picture file");
+		}
 	}
 		
 	public void refreshHighscores() {
 		FileHandler fh = new FileHandler();
-		//String scores = fh.getScoresFromFile("scorefile.txt");
 		String scores = fh.getScoresFromFile("scorefile.txt");
 		
 		if(totalGames != 0 && totalScore != 0) {
@@ -122,7 +129,6 @@ public class StartMenuController implements Initializable{
 		
 		if(invalidUsername(usernameInput.getText())) {
 			snakeApp.startSnake();
-			snakeApp.getStartStage().hide();
 	
 		}
 		else {

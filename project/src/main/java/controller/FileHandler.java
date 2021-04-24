@@ -11,23 +11,16 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-
-
 public class FileHandler implements FileHandlerInterface{
 	
 	public static int topTenScore;
 	public static int topFiveScore;
 	public static int highscoreScore;
 	
-	
 	public File getAppStateFile(String fileName) {
 		return new File(System.getProperty("user.home") + "/Applications/tdt4100-app/" + fileName);
 	}
-	
-//	public File setAppStateFile() {
-//		File = 
-//	}
-	
+
 	public String getScoresFromFile(String filename){
 		BufferedReader reader;
 		File file = getAppStateFile(filename);
@@ -101,6 +94,8 @@ public class FileHandler implements FileHandlerInterface{
 						else if(placement != 10) {
 							output += " " + placement + highscore.toString() + "\n";
 						}
+						
+						
 						// Unngår å legge til et space dersom man er på 10.plass.
 						else {
 							output += placement + highscore.toString() + "\n";
@@ -113,6 +108,7 @@ public class FileHandler implements FileHandlerInterface{
 				output = "ERROR:\nThe list could not be loaded from the file '" + file + "' because it is empty.\nPlease play a game to append a score to the list!";
 				return output;
 			}
+		
 			else {
 				return output;
 			}
@@ -124,7 +120,7 @@ public class FileHandler implements FileHandlerInterface{
 		return output;
 		
 	}	
-	
+		
 	// Hentet fra https://beginnersbook.com/2014/01/how-to-write-to-a-file-in-java-using-fileoutputstream/
 	public void writeScoreToFile(BoardController boardController, String filename) {
 		
