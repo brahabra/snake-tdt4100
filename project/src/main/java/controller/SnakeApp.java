@@ -71,8 +71,8 @@ public class SnakeApp extends Application {
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
 			
 			switch (key.getCode()) { 
-				case W: 
-				case UP:
+				case W:  
+				case UP: 
 					if (snake.getDirection() != Dir.down) {
 						snake.setDirection(Dir.up);
 					}
