@@ -81,7 +81,9 @@ public class BoardController  {
 	                }
 	                
 	                if (tick == 0 || now - tick > 1000000000 / snake.getSpeed()) { // for å håndtere animasjonen brukes tick 
-	                    tick = now;
+	                    tick = now;												// bestemmer hvor fort slangen skal bevege seg,
+	                    														// jo høyere snake.getSpeed() er, desto flere move gjør
+	                    														// slangen per sekund
 	                    
 	                    snakeController.move();
 	                    snakeController.eatFruit(boardController);

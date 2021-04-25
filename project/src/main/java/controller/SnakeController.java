@@ -25,11 +25,11 @@ public class SnakeController {
         // Looper gjennom kroppen utenom hodet til slangen. Oppdaterer slangeXY-verdiene kontinuerlig. 
         // "Forrige" gjøres til "ny". Looper ikke med hodet, stopper på i > 0 => i stopper på 1.
         for (int i = snake.size() - 1; i > 0; i--) {
-        
+    
             snake.get(i).setX(snake.get(i-1).getX());
             snake.get(i).setY(snake.get(i-1).getY());
         }
-        
+      
         // Switch-caser på hodet. Hva som skjer ved opp, venstre, høyre og ned. 
         switch (snakeModel.getDirection()) {
             case up:
@@ -76,7 +76,7 @@ public class SnakeController {
  
         if (snakeHead.getX() == fruit.getPositionX() && snakeHead.getY() == fruit.getPositionY()) {
             this.snakeModel.getSnake().add(new Coordinate(-1,-1)); // Når slangen spiser frukt legges det til en ny Coordinate som er utenfor spillbrettet. Denne Coordinaten oppretters idet slangen spiser en frukt.
-            this.snakeModel.setIncreasedSpeed();
+            this.snakeModel.setIncreasedSpeed();						 
             boardController.getBoard().increaseFruitScore();
             boardController.playEatingSound("../project/src/main/resources/eatingSound.wav");
             boardController.getBoard().setFruit();
